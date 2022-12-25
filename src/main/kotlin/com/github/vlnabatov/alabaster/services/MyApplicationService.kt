@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.vlnabatov.alabaster.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.vlnabatov.alabaster.MyBundle
 
 class MyApplicationService {
 
