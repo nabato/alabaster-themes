@@ -7,13 +7,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <themeProvider id="com.alabaster" path="/META-INF/alabaster.theme.json"/>
+        <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>
         <applicationService serviceImplementation="com.vlnabatov.alabaster.services.MyApplicationService"/>
         <projectService serviceImplementation="com.vlnabatov.alabaster.services.MyProjectService"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.vlnabatov.alabaster.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>

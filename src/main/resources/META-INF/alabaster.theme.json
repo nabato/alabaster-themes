@@ -1,11 +1,10 @@
 {
   "author": "Vlad Nabatov",
   "dark": false,
-  "name": "Alabaster",
+  "name": "Alabaster Light",
   "editorScheme": "/META-INF/alabaster.xml",
   "colors": {
-    "blue": "#B4D8FD",
-    "random": "#eb346b"
+    "blue": "#B4D8FD"
   },
   "ui": {
     "EditorTabs": {
