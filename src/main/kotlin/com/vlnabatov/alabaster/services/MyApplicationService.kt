@@ -1,6 +1,6 @@
-package com.github.vlnabatov.alabaster.services
+package com.vlnabatov.alabaster.services
 
-import com.github.vlnabatov.alabaster.MyBundle
+import com.vlnabatov.alabaster.MyBundle
 
 class MyApplicationService {
 

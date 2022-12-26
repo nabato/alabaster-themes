@@ -1,7 +1,7 @@
-package com.github.vlnabatov.alabaster.services
+package com.vlnabatov.alabaster.services
 
 import com.intellij.openapi.project.Project
-import com.github.vlnabatov.alabaster.MyBundle
+import com.vlnabatov.alabaster.MyBundle
 
 class MyProjectService(project: Project) {
 

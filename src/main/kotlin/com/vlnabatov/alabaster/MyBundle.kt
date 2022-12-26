@@ -1,4 +1,4 @@
-package com.github.vlnabatov.alabaster
+package com.vlnabatov.alabaster
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

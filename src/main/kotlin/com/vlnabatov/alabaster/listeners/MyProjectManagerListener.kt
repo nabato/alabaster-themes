@@ -1,9 +1,9 @@
-package com.github.vlnabatov.alabaster.listeners
+package com.vlnabatov.alabaster.listeners
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.github.vlnabatov.alabaster.services.MyProjectService
+import com.vlnabatov.alabaster.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 
