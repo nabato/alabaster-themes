@@ -22,7 +22,7 @@ Light theme for Jetbrains IDEs based on Tonsky's sublime-scheme-alabaster.
 
 - Manually:
 
-  Download the [latest release](https://github.com/vlnbatov/alabaster-theme/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/vlnabatov/alabaster-theme/releases) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 

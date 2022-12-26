@@ -1,22 +1,11 @@
-<scheme name="Alabaster" version="1" parent_scheme="Default">
-    <option name="FONT_SCALE" value="1.0" />
+<scheme name="Alabaster" version="142" parent_scheme="Default">
     <metaInfo>
-        <property name="created">2022-12-25T16:07:52</property>
+        <property name="created">2022-12-26T23:21:55</property>
         <property name="ide">idea</property>
         <property name="ideVersion">2022.3.1.0.0</property>
-        <property name="modified">2022-12-25T16:07:57</property>
+        <property name="modified">2022-12-26T23:21:59</property>
         <property name="originalScheme">Alabaster</property>
     </metaInfo>
-    <console-font>
-        <option name="EDITOR_FONT_NAME" value="Iosevka Term" />
-        <option name="EDITOR_FONT_SIZE" value="12" />
-    </console-font>
-    <console-font>
-        <option name="EDITOR_FONT_NAME" value="Go Mono for Powerline" />
-        <option name="EDITOR_FONT_SIZE" value="12" />
-    </console-font>
-    <option name="CONSOLE_LIGATURES" value="true" />
-    <option name="CONSOLE_LINE_SPACING" value="1.2" />
     <colors>
         <option name="CARET_COLOR" value="7acc" />
         <option name="CARET_ROW_COLOR" value="" />
@@ -470,6 +459,11 @@
                 <option name="EFFECT_TYPE" value="1" />
             </value>
         </option>
+        <option name="Head Symbol Namespace">
+            <value>
+                <option name="FOREGROUND" value="7a3e9d" />
+            </value>
+        </option>
         <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
             <value>
                 <option name="BACKGROUND" value="efefef" />
@@ -595,6 +589,11 @@
         </option>
         <option name="KOTLIN_TRAIT">
             <value />
+        </option>
+        <option name="Keyword Namespace">
+            <value>
+                <option name="FOREGROUND" value="7a3e9d" />
+            </value>
         </option>
         <option name="MARKDOWN_BLOCK_QUOTE">
             <value />
@@ -797,6 +796,11 @@
         </option>
         <option name="Scala Predefined types">
             <value />
+        </option>
+        <option name="Symbol Namespace">
+            <value>
+                <option name="FOREGROUND" value="ffbc5d" />
+            </value>
         </option>
         <option name="TEMPLATE_VARIABLE_ATTRIBUTES">
             <value>
