@@ -1,14 +1,15 @@
 # Alabaster Theme
 
----
+<img src="./src/main/resources/META-INF/pluginIcon.svg" width="140">
 
-![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 <!-- Plugin description -->
 Light theme for Jetbrains IDEs based on Tonsky's sublime-scheme-alabaster.
 <!-- Plugin description end -->
+
+![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 ![](screenshot.png)
 
