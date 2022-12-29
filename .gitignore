@@ -266,3 +266,6 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij+all,intellij,intellij+iml
 
+/private.pem
+/private_encrypted.pem
+/chain.crt
