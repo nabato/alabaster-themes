@@ -2,9 +2,19 @@
 <idea-plugin>
     <id>com.vlnabatov.alabaster</id>
     <name>Alabaster Theme</name>
-    <vendor email="nabatov.vladislav@gmail.com">Vlad Nabatov</vendor>
+    <category>Themes</category>
+    <vendor url="https://github.com/vlnabatov"
+            email="nabatov.vladislav@gmail.com">
+        Vlad Nabatov
+    </vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends
+            optional="true"
+            config-file="com.vlanabatov.alabaster-withClojure.xml">com.cursiveclojure.cursive</depends>
+    <depends
+            optional="true"
+            config-file="com.vlanabatov.alabaster-withJavascript.xml">JavaScript</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>

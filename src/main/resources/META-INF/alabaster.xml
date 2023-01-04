@@ -1,11 +1,22 @@
 <scheme name="Alabaster" version="142" parent_scheme="Default">
+    <option name="FONT_SCALE" value="1.0" />
     <metaInfo>
-        <property name="created">2022-12-26T23:21:55</property>
+        <property name="created">2022-12-28T14:37:22</property>
         <property name="ide">idea</property>
         <property name="ideVersion">2022.3.1.0.0</property>
-        <property name="modified">2022-12-26T23:21:59</property>
+        <property name="modified">2022-12-28T14:37:27</property>
         <property name="originalScheme">Alabaster</property>
     </metaInfo>
+    <console-font>
+        <option name="EDITOR_FONT_NAME" value="Iosevka Term" />
+        <option name="EDITOR_FONT_SIZE" value="12" />
+    </console-font>
+    <console-font>
+        <option name="EDITOR_FONT_NAME" value="Go Mono for Powerline" />
+        <option name="EDITOR_FONT_SIZE" value="12" />
+    </console-font>
+    <option name="CONSOLE_LIGATURES" value="true" />
+    <option name="CONSOLE_LINE_SPACING" value="1.2" />
     <colors>
         <option name="CARET_COLOR" value="7acc" />
         <option name="CARET_ROW_COLOR" value="" />
@@ -286,7 +297,6 @@
         </option>
         <option name="DEFAULT_LABEL">
             <value>
-                <option name="FOREGROUND" value="3e7e" />
                 <option name="BACKGROUND" value="dbf1ff" />
                 <option name="EFFECT_TYPE" value="1" />
             </value>
@@ -297,9 +307,7 @@
             </value>
         </option>
         <option name="DEFAULT_METADATA">
-            <value>
-                <option name="FOREGROUND" value="999999" />
-            </value>
+            <value />
         </option>
         <option name="DEFAULT_NUMBER">
             <value>

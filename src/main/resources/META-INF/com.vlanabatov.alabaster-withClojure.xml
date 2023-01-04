@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator
+                language="Clojure"
+                implementationClass="com.vlnabatov.alabaster.extensions.annotation.ClojureAnnotator"/>
+    </extensions>
+</idea-plugin>
