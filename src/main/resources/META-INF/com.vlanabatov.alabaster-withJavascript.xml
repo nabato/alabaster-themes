@@ -1,7 +1,0 @@
-<idea-plugin>
-    <extensions defaultExtensionNs="com.intellij">
-        <annotator
-                language="Javascript"
-                implementationClass="com.vlnabatov.alabaster.extensions.annotation.JavascriptAnnotator"/>
-    </extensions>
-</idea-plugin>

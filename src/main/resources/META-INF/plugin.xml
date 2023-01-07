@@ -14,9 +14,14 @@
             config-file="com.vlanabatov.alabaster-withClojure.xml">com.cursiveclojure.cursive</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withJavascript.xml">JavaScript</depends>
+            config-file="com.vlanabatov.alabaster-withJS.xml">JavaScript</depends>
+    <depends
+            optional="true"
+            config-file="com.vlanabatov.alabaster-withJava.xml">com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+<!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.MacLafProvider" os="mac"/>-->
+<!--        <lafProvider implementation="com.intellij.alabaster.laf.win10.WinLafProvider" os="windows"/>-->
         <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>
         <applicationService serviceImplementation="com.vlnabatov.alabaster.services.MyApplicationService"/>
         <projectService serviceImplementation="com.vlnabatov.alabaster.services.MyProjectService"/>
