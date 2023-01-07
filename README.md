@@ -9,8 +9,8 @@ Light minimal theme for Jetbrains IDEs based on [tonsky's sublime-scheme-alabast
 <!-- Plugin description end -->
 
 ![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-theme.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-theme.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 ![](screenshot.png)
 
