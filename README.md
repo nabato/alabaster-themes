@@ -14,7 +14,7 @@ Light minimal theme for Jetbrains IDEs based on [tonsky's sublime-scheme-alabast
 
 ![](screenshot.png)
 
-This theme goes more minimal and defines only four elements (all in a broad terms):
+This theme goes more minimal and defines only four elements (all in broad terms):
 
 #### Strings
 
