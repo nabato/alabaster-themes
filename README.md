@@ -24,8 +24,7 @@ This theme goes more minimal and defines only four elements (all in a broad term
 
 #### Function declarations
 
-unlike [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster) which additionally highlights all global definitions. The motivation for exclusion of global definitions is visual separation of action blocks from data blocks.
-
+unlike [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster) which additionally highlights all global definitions. I think it's would be better to highlight only functions as the the action happens in them.
 ## Installation
 
 - Using IDE built-in plugin system:
