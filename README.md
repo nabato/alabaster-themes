@@ -4,7 +4,7 @@
 
 <!-- Plugin description -->
 
-Light minimal theme for Jetbrains IDEs
+Light minimal theme for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster)
 
 <!-- Plugin description end -->
 
@@ -14,7 +14,7 @@ Light minimal theme for Jetbrains IDEs
 
 ![](screenshot.png)
 
-Based on [Tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster) this theme goes more minimal and defines only four elements (all in a broad terms):
+This theme goes more minimal and defines only four elements (all in a broad terms):
 
 #### Strings
 
