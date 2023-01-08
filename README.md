@@ -4,17 +4,9 @@
 
 <!-- Plugin description -->
 
-Light minimal theme for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster)
+Light minimal theme for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
 
-<!-- Plugin description end -->
-
-![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-
-![](screenshot.png)
-
-This theme goes more minimal and defines only four elements (all in a broad terms):
+This theme goes more minimal and defines only four elements (all in broad terms):
 
 #### Strings
 
@@ -24,7 +16,15 @@ This theme goes more minimal and defines only four elements (all in a broad term
 
 #### Function declarations
 
-unlike [sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster) which additionally highlights all global definitions. The motivation for exclusion of global definitions is visual separation of action blocks from data blocks.
+The motivation for exclusion of global definitions like in sublime-scheme-alabaster  is visual separation of action blocks from data blocks.
+
+<!-- Plugin description end -->
+
+![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+
+![](screenshot.png)
 
 ## Installation
 
