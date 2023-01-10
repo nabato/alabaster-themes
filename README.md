@@ -2,6 +2,11 @@
 
 <img src="./src/main/resources/META-INF/pluginIcon.svg" width="140">
 
+<!-- ![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg) -->
+
+[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+
 <!-- Plugin description -->
 
 Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
@@ -17,10 +22,6 @@ These themes go further in minimalistic approach by narrowing global definitions
 #### Function declarations
 
 <!-- Plugin description end -->
-
-<!-- ![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg) -->
-[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 ## Installation
 
