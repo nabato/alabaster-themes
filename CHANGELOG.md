@@ -2,6 +2,8 @@
 
 # Alabaster Theme Changelog
 
+## [Unreleased]
+
 ## [1.0.25]
 - Python improved
 

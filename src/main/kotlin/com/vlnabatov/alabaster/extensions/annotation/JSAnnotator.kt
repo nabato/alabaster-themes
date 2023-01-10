@@ -72,6 +72,7 @@ class JSAnnotator : Annotator {
 
   // Imprecise detection given current PSI info
   private fun isSymbolIdentifier(element: PsiElement): Boolean {
+      element.resolveScope
     if (element.elementType in valTokens) {
       return true
     }
