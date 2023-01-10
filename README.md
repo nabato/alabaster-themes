@@ -16,7 +16,7 @@ This theme goes more minimal and defines only four elements (all in broad terms)
 
 #### Function declarations
 
-The motivation for exclusion of global definitions like in sublime-scheme-alabaster  is visual separation of action blocks from data blocks.
+The motivation for exclusion of global definitions' highlighting like in sublime-scheme-alabaster  is visual separation of action blocks from data blocks.
 
 <!-- Plugin description end -->
 
