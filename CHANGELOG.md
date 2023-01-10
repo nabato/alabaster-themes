@@ -4,9 +4,11 @@
 
 ## [Unreleased]
 
+## [1.0.30]
+- Cleanup
+
+## [1.0.29]
+- Light and dark themes bundled in one plugin
+
 ## [1.0.25]
 - Python improved
-
-## [1.0.1]
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)

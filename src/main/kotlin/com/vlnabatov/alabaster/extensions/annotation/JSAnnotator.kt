@@ -15,53 +15,50 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.util.elementType
 
-private val identifierTokens = setOf(IDENTIFIER, PRIVATE_IDENTIFIER)
+val identifierTypes = setOf(IDENTIFIER, PRIVATE_IDENTIFIER)
 
-private val valTokens = setOf(TRUE_KEYWORD, FALSE_KEYWORD, NULL_KEYWORD, UNDEFINED_KEYWORD)
+val symbolTypes = setOf(TRUE_KEYWORD, FALSE_KEYWORD, NULL_KEYWORD, UNDEFINED_KEYWORD)
 
-private val valRegex =
+val symbolRegex =
     Regex(
         "\\bInfinity|NaN|POSITIVE_INFINITY|NEGATIVE_INFINITY|MAX_VALUE|MIN_VALUE|EPSILON|MAX_SAFE_INTEGER|MIN_SAFE_INTEGER|E|LN2|LN10|LOG2E|LOG10E|PI|SQRT1_2|SQRT2|\\b")
 
-private val mathObjectRegex = Regex("\\bMath|Number\\b")
+val mathObjectRegex = Regex("\\bMath|Number\\b")
 
-private val assignmentExpressionTokens =
+val assignmentExpressionTypes =
     setOf(ASSIGNMENT_EXPRESSION, BODY_VARIABLES, ES6_CLASS_FIELDS, PROPERTY, FIELD, FIELD_STATEMENT)
 
-private val functionExpressionTokens =
+val functionExpressionTypes =
     setOf(
         *FUNCTION_DECLARATIONS.types,
         *FUNCTION_EXPRESSIONS.types,
         *FUNCTION_PROPERTIES.types,
         *CLASS_EXPRESSIONS.types)
 
-private val functionConstructorRegex =
+val functionConstructorRegex =
     Regex("\\bFunction|AsyncFunction|GeneratorFunction|AsyncGeneratorFunction\\b")
 
-private val requireRegex = Regex("\\brequire\\b")
+val requireRegex = Regex("\\brequire\\b")
 
 class JSAnnotator : Annotator {
 
   override fun annotate(element: PsiElement, holder: AnnotationHolder) {
     try {
       if (element is LeafPsiElement) {
-        when {
-          isSymbolIdentifier(element) -> {
-            holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
-          }
-          element.elementType in identifierTokens -> {
-            if (isFunctionIdentifier(element)) {
-              holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
-            } else if (element.parent.elementType == REFERENCE_EXPRESSION ||
-                element.parent.parent.elementType in DESTRUCTURING_PROPERTIES ||
-                element.parent.elementType == EXPORT_SPECIFIER ||
-                element.parent.elementType == IMPORT_SPECIFIER ||
-                element.parent.elementType == IMPORTED_BINDING ||
-                (element.parent.elementType == VARIABLE &&
-                    element.parent.children[0].elementType == CALL_EXPRESSION &&
-                    element.parent.children[0].children[0].text.matches(requireRegex))) {
-              holder.newSilentAnnotation(INFORMATION).textAttributes(TEXT).create()
-            }
+        if (isSymbolIdentifier(element)) {
+          holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
+        } else if (element.elementType in identifierTypes) {
+          if (isFunctionIdentifier(element)) {
+            holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
+          } else if (element.parent.elementType == REFERENCE_EXPRESSION ||
+              element.parent.parent.elementType in DESTRUCTURING_PROPERTIES ||
+              element.parent.elementType == EXPORT_SPECIFIER ||
+              element.parent.elementType == IMPORT_SPECIFIER ||
+              element.parent.elementType == IMPORTED_BINDING ||
+              (element.parent.elementType == VARIABLE &&
+                  element.parent.children[0].elementType == CALL_EXPRESSION &&
+                  element.parent.children[0].children[0].text.matches(requireRegex))) {
+            holder.newSilentAnnotation(INFORMATION).textAttributes(TEXT).create()
           }
         }
       }
@@ -72,25 +69,24 @@ class JSAnnotator : Annotator {
 
   // Imprecise detection given current PSI info
   private fun isSymbolIdentifier(element: PsiElement): Boolean {
-      element.resolveScope
-    if (element.elementType in valTokens) {
+    if (element.elementType in symbolTypes) {
       return true
     }
 
-    if (element.text.matches(valRegex) &&
+    if (element.text.matches(symbolRegex) &&
         element.parent.elementType == REFERENCE_EXPRESSION &&
-        (element.parent as JSReferenceExpressionImpl).referencedName!!.matches(valRegex)) {
+        (element.parent as JSReferenceExpressionImpl).referencedName!!.matches(symbolRegex)) {
       return true
     }
 
-    if (element.text.matches(valRegex) &&
+    if (element.text.matches(symbolRegex) &&
         element.parent.elementType == DESTRUCTURING_PROPERTY &&
         element.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
         element.parent.parent.parent.children[1].text.matches(mathObjectRegex)) {
       return true
     }
 
-    if (element.text.matches(valRegex) &&
+    if (element.text.matches(symbolRegex) &&
         element.parent.parent.elementType == DESTRUCTURING_SHORTHANDED_PROPERTY &&
         element.parent.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
         element.parent.parent.parent.parent.children[1].text.matches(mathObjectRegex)) {
@@ -101,11 +97,11 @@ class JSAnnotator : Annotator {
   }
 
   private fun isFunctionIdentifier(element: PsiElement): Boolean {
-    if (element.parent.elementType in functionExpressionTokens) {
+    if (element.parent.elementType in functionExpressionTypes) {
       return true
     }
 
-    if (element.parent.elementType in assignmentExpressionTokens &&
+    if (element.parent.elementType in assignmentExpressionTypes &&
         element.parent.children[0] !== element &&
         isFunctionExpression(element.parent.children[0])) {
 
@@ -124,7 +120,7 @@ class JSAnnotator : Annotator {
   }
 
   private fun isFunctionExpression(element: PsiElement) =
-      element.elementType in functionExpressionTokens ||
+      element.elementType in functionExpressionTypes ||
           (element.elementType == NEW_EXPRESSION &&
               element.children[0].text.matches(functionConstructorRegex))
 }

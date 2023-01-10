@@ -1,12 +1,12 @@
-# [](https://)Alabaster Theme
+# Alabaster Themes
 
 <img src="./src/main/resources/META-INF/pluginIcon.svg" width="140">
 
 <!-- Plugin description -->
 
-Light minimal theme for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
+Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
 
-This theme goes more minimal and defines only four elements (all in broad terms):
+These themes go further in minimalistic approach by narrowing global definitions only to function declarations. So we have only four elements to highlight (all in broad terms):
 
 #### Strings
 
@@ -16,15 +16,11 @@ This theme goes more minimal and defines only four elements (all in broad terms)
 
 #### Function declarations
 
-The motivation for exclusion of global definitions' highlighting like in sublime-scheme-alabaster  is visual separation of action blocks from data blocks.
-
 <!-- Plugin description end -->
 
-![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-theme.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-theme.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-
-![](screenshot.png)
+<!-- ![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg) -->
+[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 ## Installation
 
@@ -37,4 +33,6 @@ The motivation for exclusion of global definitions' highlighting like in sublime
   Download the [latest release](https://github.com/vlnabatov/alabaster-theme/releases) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
----
+![screenshot](screenshot.png)
+
+![screenshot-dark](screenshot-dark.png)
