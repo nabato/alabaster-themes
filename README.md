@@ -27,7 +27,7 @@ These themes go further in minimalistic approach by narrowing global definitions
 
 - Using IDE built-in plugin system:
 
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "alabaster-theme"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "alabaster-themes"</kbd> >
   <kbd>Install Plugin</kbd>
 - Manually:
 
