@@ -1,15 +1,11 @@
 <scheme name="Alabaster" version="142" parent_scheme="Default">
-    <option name="FONT_SCALE" value="1.0" />
     <metaInfo>
-        <property name="created">2023-01-07T19:02:52</property>
+        <property name="created">2023-01-10T13:38:02</property>
         <property name="ide">idea</property>
         <property name="ideVersion">2022.3.1.0.0</property>
-        <property name="modified">2023-01-07T19:02:55</property>
+        <property name="modified">2023-01-10T13:38:07</property>
         <property name="originalScheme">_@user_Alabaster</property>
     </metaInfo>
-    <option name="CONSOLE_FONT_NAME" value="Fira Code" />
-    <option name="CONSOLE_LIGATURES" value="true" />
-    <option name="CONSOLE_LINE_SPACING" value="1.2" />
     <colors>
         <option name="CARET_COLOR" value="7acc" />
         <option name="CARET_ROW_COLOR" value="" />
@@ -32,7 +28,6 @@
                 <option name="BACKGROUND" value="ffcccc" />
             </value>
         </option>
-        <option name="BASH.EXTERNAL_COMMAND" baseAttributes="DEFAULT_IDENTIFIER" />
         <option name="BASH.FUNCTION_DEF_NAME">
             <value>
                 <option name="FOREGROUND" value="3e7e" />
@@ -642,6 +637,11 @@
         <option name="PY.BUILTIN_NAME">
             <value />
         </option>
+        <option name="PY.DECORATOR">
+            <value>
+                <option name="BACKGROUND" value="dbf1ff" />
+            </value>
+        </option>
         <option name="PY.FUNC_DEFINITION">
             <value>
                 <option name="FOREGROUND" value="3e7e" />
@@ -665,12 +665,7 @@
         <option name="PY.SELF_PARAMETER">
             <value />
         </option>
-        <option name="PY.STRING.U">
-            <value>
-                <option name="FOREGROUND" value="64200" />
-                <option name="BACKGROUND" value="e5fad7" />
-            </value>
-        </option>
+        <option name="PY.STRING.B" baseAttributes="DEFAULT_STRING" />
         <option name="RDOC_DIRECTIVE">
             <value />
         </option>
@@ -832,12 +827,6 @@
         <option name="TEMPLATE_VARIABLE_ATTRIBUTES">
             <value>
                 <option name="FOREGROUND" value="7f0000" />
-            </value>
-        </option>
-        <option name="TEXT">
-            <value>
-                <option name="FOREGROUND" value="0" />
-                <option name="BACKGROUND" value="ffffff" />
             </value>
         </option>
         <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
