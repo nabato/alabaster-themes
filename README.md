@@ -9,9 +9,9 @@
 
 <!-- Plugin description -->
 
-Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
+Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster) with a slight twist.
 
-These themes go further in minimalistic approach by narrowing global definitions only to function declarations. So we have only four elements to highlight (all in broad terms):
+Themes use Jetbrains' color palette to provide best possible experience and go further in minimalistic approach by highlighting only function declarations and omitting other global definitions. The highlighted items are (all in broad terms):
 
 #### Strings
 
@@ -25,7 +25,7 @@ These themes go further in minimalistic approach by narrowing global definitions
 
 ## Installation
 
-- Using IDE built-in plugin system:
+- [](https://)Using IDE built-in plugin system:
 
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "alabaster-themes"</kbd> >
   <kbd>Install Plugin</kbd>
