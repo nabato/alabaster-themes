@@ -52,9 +52,7 @@ class JSAnnotator : Annotator {
             holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
           } else if (element.parent.elementType == REFERENCE_EXPRESSION ||
               element.parent.parent.elementType in DESTRUCTURING_PROPERTIES ||
-              element.parent.elementType == EXPORT_SPECIFIER ||
-              element.parent.elementType == IMPORT_SPECIFIER ||
-              element.parent.elementType == IMPORTED_BINDING ||
+              element.parent.elementType in [EXPORT_SPECIFIER, IMPORT_SPECIFIER, IMPORTED_BINDING] ||
               (element.parent.elementType == VARIABLE &&
                   element.parent.children[0].elementType == CALL_EXPRESSION &&
                   element.parent.children[0].children[0].text.matches(requireRegex))) {
