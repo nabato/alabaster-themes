@@ -7,15 +7,20 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.TEXT_ATTRIBUTES
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
 import com.intellij.openapi.editor.HighlighterColors.TEXT
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
+import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.util.elementType
 import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
 import cursive.psi.impl.synthetic.SyntheticSymbol
 import java.awt.Font
+
+val namespacedMapPrefixes = setOf("#::", "#:")
 
 val macro: Keyword = Keyword.find("macro")
 val ns: Keyword = Keyword.find("ns")
@@ -43,6 +48,13 @@ class ClojureAnnotator : Annotator {
             if (element.type == SYMBOL && element.parent.children[0] === element) {
                 holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
             }
+
+            if (element.parent.firstChild === element) {
+                println((element as PsiElement).text)
+                println(element.elementType)
+                holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
+            }
+
             return
         }
 
@@ -52,7 +64,7 @@ class ClojureAnnotator : Annotator {
                     .newSilentAnnotation(TEXT_ATTRIBUTES)
                     .range(
                         TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
-                    .textAttributes(TEXT)
+                    .textAttributes(BRACES)
                     .create()
             }
             return
