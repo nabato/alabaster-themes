@@ -4,13 +4,16 @@
   "name": "Alabaster",
   "editorScheme": "/META-INF/alabaster.xml",
   "colors": {
-    "blue": "#B4D8FD"
+    "blue": "#B4D8FD",
+    "dark blue": "#007ACC",
+    "grey": "#F7F7F7"
   },
   "ui": {
     "EditorTabs": {
-      "underlineColor": "blue"
+      "underlineColor": "dark blue"
     },
     "*": {
+      "background":  "grey",
       "selectionBackground": "blue"
     }
   }

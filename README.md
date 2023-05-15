@@ -36,4 +36,6 @@ Themes use Jetbrains' color palette to provide best possible experience and go f
 
 ![screenshot](screenshot.png)
 
+![screenshot-bg](screenshot-bg.png)
+
 ![screenshot-dark](screenshot-dark.png)

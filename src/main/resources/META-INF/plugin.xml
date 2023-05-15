@@ -23,6 +23,7 @@
 <!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.MacLafProvider" os="mac"/>-->
 <!--        <lafProvider implementation="com.intellij.alabaster.laf.win10.WinLafProvider" os="windows"/>-->
         <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>
+        <themeProvider id="com.vlnabatov.alabaster-bg" path="/META-INF/alabaster-bg.theme.json"/>
         <themeProvider id="com.vlnabatov.alabaster-dark" path="/META-INF/alabaster-dark.theme.json"/>
         <applicationService serviceImplementation="com.vlnabatov.alabaster.services.MyApplicationService"/>
         <projectService serviceImplementation="com.vlnabatov.alabaster.services.MyProjectService"/>

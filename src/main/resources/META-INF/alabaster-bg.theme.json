@@ -1,0 +1,17 @@
+{
+  "author": "Vlad Nabatov",
+  "dark": false,
+  "name": "Alabaster BG",
+  "editorScheme": "/META-INF/alabaster-bg.xml",
+  "colors": {
+    "blue": "#B4D8FD"
+  },
+  "ui": {
+    "EditorTabs": {
+      "underlineColor": "blue"
+    },
+    "*": {
+      "selectionBackground": "blue"
+    }
+  }
+}
