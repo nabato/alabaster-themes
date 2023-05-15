@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.33]
+- Cleanup
+
 ## [1.0.32]
 - Added second light theme
 - Non Clojure STD macro calls are in italic font style
