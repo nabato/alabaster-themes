@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.36]
+- More fixes
+
 ## [1.0.35]
 - Fixed second light theme
 
