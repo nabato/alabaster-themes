@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.37]
+- Better highlighting for the light themes
+
 ## [1.0.36]
 - More fixes
 

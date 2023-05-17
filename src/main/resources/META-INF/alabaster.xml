@@ -1,9 +1,10 @@
 <scheme name="Alabaster" version="142" parent_scheme="Default">
   <metaInfo>
-    <property name="created">2023-05-17T17:46:14</property>
+    <property name="created">2023-05-17T22:39:26</property>
     <property name="ide">idea</property>
     <property name="ideVersion">2023.1.1.0.0</property>
-    <property name="modified">2023-05-17T17:46:26</property>
+    <property name="modified">2023-05-17T22:39:32</property>
+    <property name="originalScheme">_@user_Alabaster 2</property>
   </metaInfo>
   <colors>
     <option name="CARET_COLOR" value="7acc" />
@@ -24,7 +25,9 @@
       <value />
     </option>
     <option name="CSS.IMPORTANT">
-      <value />
+      <value>
+        <option name="FONT_TYPE" value="1" />
+      </value>
     </option>
     <option name="CSS.PROPERTY_NAME">
       <value />
@@ -59,9 +62,7 @@
       </value>
     </option>
     <option name="DEFAULT_ATTRIBUTE">
-      <value>
-        <option name="FONT_TYPE" value="1" />
-      </value>
+      <value />
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
@@ -214,12 +215,9 @@
         <option name="FOREGROUND" value="7a3e9d" />
       </value>
     </option>
-    <option name="HTML_ATTRIBUTE_NAME">
-      <value />
-    </option>
     <option name="HTML_CODE">
       <value>
-        <option name="FOREGROUND" value="448c27" />
+        <option name="FOREGROUND" value="6a8759" />
         <option name="EFFECT_TYPE" value="5" />
       </value>
     </option>
@@ -230,17 +228,6 @@
       <value>
         <option name="FOREGROUND" value="7a3e9d" />
       </value>
-    </option>
-    <option name="HTML_TAG">
-      <value>
-        <option name="FOREGROUND" value="0" />
-      </value>
-    </option>
-    <option name="HTML_TAG_NAME">
-      <value />
-    </option>
-    <option name="HTTP_HEADER_FIELD_VALUE">
-      <value />
     </option>
     <option name="HTTP_REQUEST_MESSAGE_BODY">
       <value />
@@ -271,6 +258,7 @@
     <option name="JS.EXPORTED.VARIABLE">
       <value />
     </option>
+    <option name="JS.GLOBAL_FUNCTION" baseAttributes="DEFAULT_FUNCTION_DECLARATION" />
     <option name="JS.GLOBAL_VARIABLE">
       <value />
     </option>
@@ -280,6 +268,7 @@
     <option name="JS.LOCAL_VARIABLE">
       <value />
     </option>
+    <option name="JS.REGEXP" baseAttributes="DEFAULT_STRING" />
     <option name="JS.STATIC_MEMBER_VARIABLE">
       <value />
     </option>
@@ -293,7 +282,7 @@
     </option>
     <option name="JSON.PROPERTY_KEY">
       <value>
-        <option name="FOREGROUND" value="448c27" />
+        <option name="FOREGROUND" value="6a8759" />
       </value>
     </option>
     <option name="JSONPATH.FUNCTION">
@@ -341,17 +330,6 @@
         <option name="BACKGROUND" value="b4d8fd" />
         <option name="FONT_TYPE" value="1" />
         <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
-    <option name="MATCHED_TAG_NAME">
-      <value>
-        <option name="BACKGROUND" value="b4d8fd" />
-        <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
-    <option name="MY_ITALIC">
-      <value>
-        <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="Map key">
@@ -484,12 +462,11 @@
       <value />
     </option>
     <option name="TYPE_PARAMETER_NAME_ATTRIBUTES" baseAttributes="DEFAULT_PARAMETER" />
-    <option name="XML_ATTRIBUTE_NAME">
-      <value />
-    </option>
-    <option name="XML_ATTRIBUTE_VALUE">
+    <option name="WARNING_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="448c27" />
+        <option name="EFFECT_COLOR" value="f6ebbc" />
+        <option name="ERROR_STRIPE_COLOR" value="ebc700" />
+        <option name="EFFECT_TYPE" value="4" />
       </value>
     </option>
     <option name="XML_CUSTOM_TAG_NAME">
@@ -503,20 +480,15 @@
     <option name="XML_PROLOGUE">
       <value />
     </option>
-    <option name="XML_TAG">
-      <value />
-    </option>
     <option name="XML_TAG_DATA">
       <value>
-        <option name="FOREGROUND" value="448c27" />
-        <option name="EFFECT_TYPE" value="5" />
+        <option name="FOREGROUND" value="6a8759" />
       </value>
     </option>
     <option name="XML_TAG_NAME">
-      <value />
-    </option>
-    <option name="html_link_tag">
-      <value />
+      <value>
+        <option name="FOREGROUND" value="a9b7c6" />
+      </value>
     </option>
   </attributes>
 </scheme>
