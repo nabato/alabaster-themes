@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.35]
+- Fixed second light theme
+
 ## [1.0.34]
 - Better highlighting for clojure light themes
 
