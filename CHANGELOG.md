@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.38]
+- Support the new versions of IDEA
+
 ## [1.0.37]
 - Better highlighting for the light themes
 

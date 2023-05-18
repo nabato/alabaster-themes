@@ -4,23 +4,22 @@ import clojure.lang.Keyword
 import clojure.lang.PersistentHashMap
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
+import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
 import com.intellij.lang.annotation.HighlightSeverity.TEXT_ATTRIBUTES
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
-import com.intellij.openapi.editor.HighlighterColors.TEXT
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STRING
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import com.intellij.psi.impl.source.tree.LeafPsiElement
-import com.intellij.psi.util.elementType
 import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
+import cursive.psi.impl.ClSharp
 import cursive.psi.impl.synthetic.SyntheticSymbol
 import java.awt.Font
 
-val namespacedMapPrefixes = setOf("#::", "#:")
 
 val macro: Keyword = Keyword.find("macro")
 val ns: Keyword = Keyword.find("ns")
@@ -43,32 +42,39 @@ class ClojureAnnotator : Annotator {
     if (element !is ClojurePsiElement) return
 
     try {
+//        if (element is ClSharp) {
+//            println(element.text)
+//            holder
+//                .newSilentAnnotation(TEXT_ATTRIBUTES)
+//                .range(TextRange.from(element.textOffset, element.textOffset + 2))
+//                .textAttributes(STRING)
+//                .create()
+//            return
+//        }
 
-        if ((element.parent as ClojurePsiElement).type == NAMESPACED_MAP) {
-            if (element.type == SYMBOL && element.parent.children[0] === element) {
-                holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
-            }
-
-            if (element.parent.firstChild === element) {
-                println((element as PsiElement).text)
-                println(element.elementType)
-                holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
-            }
-
-            return
+      if ((element.parent as ClojurePsiElement).type == NAMESPACED_MAP) {
+        if (element.type == SYMBOL && element.parent.children[0] === element) {
+          holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
         }
 
-        if (element.type === KEYWORD || (element.parent as ClojurePsiElement).type === KEYWORD) {
-            namespacedKeywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
-                holder
-                    .newSilentAnnotation(TEXT_ATTRIBUTES)
-                    .range(
-                        TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
-                    .textAttributes(BRACES)
-                    .create()
-            }
-            return
+        if (element.parent.firstChild === element) {
+          holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
         }
+
+        return
+      }
+
+      if (element.type === KEYWORD || (element.parent as ClojurePsiElement).type === KEYWORD) {
+        namespacedKeywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
+          holder
+              .newSilentAnnotation(TEXT_ATTRIBUTES)
+              .range(
+                  TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
+              .textAttributes(BRACES)
+              .create()
+        }
+        return
+      }
       if (element.parent is ClListLike) {
         if (isBasicFunctionDeclaration(element) ||
             isPolymorphicFunctionDeclaration(element) ||
