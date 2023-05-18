@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.39]
+- Proper theme names
+
 ## [1.0.38]
 - Support the new versions of IDEA
 
