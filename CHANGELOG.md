@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+## [1.0.41]
+- Better highlighting for XML, JSON, etc.
+
+
+## [1.0.40]
+- Cleanup
+
 ## [1.0.39]
 - Proper theme names
 
