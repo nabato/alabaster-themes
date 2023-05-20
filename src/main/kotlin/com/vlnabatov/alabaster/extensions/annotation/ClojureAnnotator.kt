@@ -8,16 +8,18 @@ import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
 import com.intellij.lang.annotation.HighlightSeverity.TEXT_ATTRIBUTES
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STRING
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
+import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.elementType
 import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
-import cursive.psi.impl.ClSharp
+import cursive.psi.impl.ClStringLiteral
 import cursive.psi.impl.synthetic.SyntheticSymbol
+import cursive.parser.ClojureElementType
 import java.awt.Font
 
 
@@ -37,124 +39,135 @@ val methodsKeywordRegex = Regex("\\B:methods\\b")
 val namespacedKeywordSpecialCharactersRegex = Regex("[:/.]")
 
 class ClojureAnnotator : Annotator {
+    override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        if (element !is ClojurePsiElement) return
 
-  override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-    if (element !is ClojurePsiElement) return
+        try {
+//            if (element is ClSharp) {
+//                println(element.text)
+//                holder
+//                    .newSilentAnnotation(TEXT_ATTRIBUTES)
+//                    .range(TextRange.from(element.textOffset, element.textOffset + 2))
+//                    .textAttributes(STRING)
+//                    .create()
+//                return
+//            }
+//            if (element is ClStringLiteral && element.text.contains("method")) {
+//                println(element.elementType)
+//                println(element.elementType!!::class.qualifiedName)
+//                println(EditorColorsManager.getInstance().globalScheme)
+//
+//                holder
+//                    .newSilentAnnotation(INFORMATION)
+//                    .range(TextRange.from(element.textOffset - 1, element.textOffset - 1 + 10))
+//                    .textAttributes(BRACES)
+//                    .create()
+//                return
+//            }
 
-    try {
-//        if (element is ClSharp) {
-//            println(element.text)
-//            holder
-//                .newSilentAnnotation(TEXT_ATTRIBUTES)
-//                .range(TextRange.from(element.textOffset, element.textOffset + 2))
-//                .textAttributes(STRING)
-//                .create()
-//            return
-//        }
+            if ((element.parent as ClojurePsiElement).type == NAMESPACED_MAP) {
+                if (element.type == SYMBOL && element.parent.children[0] === element) {
+                    holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
+                }
 
-      if ((element.parent as ClojurePsiElement).type == NAMESPACED_MAP) {
-        if (element.type == SYMBOL && element.parent.children[0] === element) {
-          holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
+                if (element.parent.firstChild === element) {
+                    holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
+                }
+            }
+
+            if (element.type === KEYWORD || (element.parent as ClojurePsiElement).type === KEYWORD) {
+                namespacedKeywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
+                    holder
+                        .newSilentAnnotation(TEXT_ATTRIBUTES)
+                        .range(
+                            TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first)
+                        )
+                        .textAttributes(BRACES)
+                        .create()
+                }
+            }
+            if (element.parent is ClListLike) {
+                if (isBasicFunctionDeclaration(element) ||
+                    isPolymorphicFunctionDeclaration(element) ||
+                    isCompiledPolymorphicFunctionDeclaration(element) ||
+                    isVariableDeclarationWithFunctionAssignment(element) ||
+                    isLetMacroBindingToAFunction(element) ||
+                    isLetFnMacroBindingToAFunction(element)
+                ) {
+                    holder
+                        .newSilentAnnotation(TEXT_ATTRIBUTES)
+                        .textAttributes(DefaultLanguageHighlighterColors.FUNCTION_DECLARATION)
+                        .create()
+                }
+            }
+
+            if (isMacroCall(element) && !isClojureLangNSCall(element)) {
+                holder
+                    .newSilentAnnotation(TEXT_ATTRIBUTES)
+                    .enforcedTextAttributes(TextAttributes(null, null, null, null, Font.ITALIC))
+                    .create()
+            }
+        } catch (e: Exception) {
+            /* Should not happen */
         }
-
-        if (element.parent.firstChild === element) {
-          holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
-        }
-
-        return
-      }
-
-      if (element.type === KEYWORD || (element.parent as ClojurePsiElement).type === KEYWORD) {
-        namespacedKeywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
-          holder
-              .newSilentAnnotation(TEXT_ATTRIBUTES)
-              .range(
-                  TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
-              .textAttributes(BRACES)
-              .create()
-        }
-        return
-      }
-      if (element.parent is ClListLike) {
-        if (isBasicFunctionDeclaration(element) ||
-            isPolymorphicFunctionDeclaration(element) ||
-            isCompiledPolymorphicFunctionDeclaration(element) ||
-            isVariableDeclarationWithFunctionAssignment(element) ||
-            isLetMacroBindingToAFunction(element) ||
-            isLetFnMacroBindingToAFunction(element)) {
-          holder
-              .newSilentAnnotation(TEXT_ATTRIBUTES)
-              .textAttributes(DefaultLanguageHighlighterColors.FUNCTION_DECLARATION)
-              .create()
-        }
-      }
-
-      if (isMacroCall(element) && !isClojureLangNSCall(element)) {
-        holder
-            .newSilentAnnotation(TEXT_ATTRIBUTES)
-            .enforcedTextAttributes(TextAttributes(null, null, null, null, Font.ITALIC))
-            .create()
-      }
-    } catch (e: Exception) {
-      /* Should not happen */
     }
-  }
 
-  private fun isMacroCall(element: ClojurePsiElement): Boolean =
-      ((element.reference?.resolve() as SyntheticSymbol).deref() as PersistentHashMap)[macro] !=
-          null
+    private fun isMacroCall(element: ClojurePsiElement): Boolean =
+        ((element.reference?.resolve() as SyntheticSymbol).deref() as PersistentHashMap)[macro] !=
+                null
 
-  private fun isClojureLangNSCall(element: ClojurePsiElement): Boolean =
-      (((element.reference?.resolve() as SyntheticSymbol).deref() as PersistentHashMap)[ns]
-              as String)
-          .matches(clojureLangNSPatternRegex)
+    private fun isClojureLangNSCall(element: ClojurePsiElement): Boolean =
+        (((element.reference?.resolve() as SyntheticSymbol).deref() as PersistentHashMap)[ns]
+                as String)
+            .matches(clojureLangNSPatternRegex)
 
-  private fun isBasicFunctionDeclaration(element: ClojurePsiElement) =
-      (((element.parent as ClListLike).children[0].text.matches(functionMacrosRegex)) &&
-          (element.parent as ClListLike).type == LIST &&
-          element.parent.children.firstOrNull {
-            (it as ClojurePsiElement).type == SYMBOL && it !== element.parent.children[0]
-          } === element)
+    private fun isBasicFunctionDeclaration(element: ClojurePsiElement) =
+        (((element.parent as ClListLike).children[0].text.matches(functionMacrosRegex)) &&
+                (element.parent as ClListLike).type == LIST &&
+                element.parent.children.firstOrNull {
+                    (it as ClojurePsiElement).type == SYMBOL && it !== element.parent.children[0]
+                } === element)
 
-  private fun isPolymorphicFunctionDeclaration(element: ClojurePsiElement) =
-      (element.parent.parent.children[0].text.matches(polymorphicMacroRegex) &&
-          (element.parent as ClListLike).type == LIST &&
-          element.parent.children.firstOrNull { (it as ClojurePsiElement).type == SYMBOL } ===
-              element)
+    private fun isPolymorphicFunctionDeclaration(element: ClojurePsiElement) =
+        (element.parent.parent.children[0].text.matches(polymorphicMacroRegex) &&
+                (element.parent as ClListLike).type == LIST &&
+                element.parent.children.firstOrNull { (it as ClojurePsiElement).type == SYMBOL } ===
+                element)
 
-  private fun isCompiledPolymorphicFunctionDeclaration(element: ClojurePsiElement) =
-      (element.parent.parent.parent.children[0].text.matches(compiledPolymorphicMacroRegex) &&
-          (element.parent.parent.parent.children[
-                  element.parent.parent.parent.children.indexOfFirst {
-                    ((it as ClojurePsiElement).type == KEYWORD) &&
-                        it.text.matches(methodsKeywordRegex)
-                  } + 1] === element.parent.parent) &&
-          element.parent.children.firstOrNull { (it as ClojurePsiElement).type == SYMBOL } ===
-              element)
+    private fun isCompiledPolymorphicFunctionDeclaration(element: ClojurePsiElement) =
+        (element.parent.parent.parent.children[0].text.matches(compiledPolymorphicMacroRegex) &&
+                (element.parent.parent.parent.children[
+                    element.parent.parent.parent.children.indexOfFirst {
+                        ((it as ClojurePsiElement).type == KEYWORD) &&
+                                it.text.matches(methodsKeywordRegex)
+                    } + 1] === element.parent.parent) &&
+                element.parent.children.firstOrNull { (it as ClojurePsiElement).type == SYMBOL } ===
+                element)
 
-  private fun isVariableDeclarationWithFunctionAssignment(element: ClojurePsiElement) =
-      (element.parent.children[0].text.matches(variableMacroRegex) &&
-          (isFunctionExpression(element.parent.children.last() as ClojurePsiElement)) &&
-          element.parent.children.firstOrNull {
-            it !== element.parent.children[0] && (it as ClojurePsiElement).type == SYMBOL
-          } === element)
+    private fun isVariableDeclarationWithFunctionAssignment(element: ClojurePsiElement) =
+        (element.parent.children[0].text.matches(variableMacroRegex) &&
+                (isFunctionExpression(element.parent.children.last() as ClojurePsiElement)) &&
+                element.parent.children.firstOrNull {
+                    it !== element.parent.children[0] && (it as ClojurePsiElement).type == SYMBOL
+                } === element)
 
-  private fun isLetMacroBindingToAFunction(element: ClojurePsiElement) =
-      ((element.parent as ClListLike).type == VECTOR &&
-          element.type == SYMBOL &&
-          element.parent.parent.children[0].text.matches(letSpecialFormRegex) &&
-          isFunctionExpression(
-              element.parent.children[element.parent.children.indexOf(element) + 1]
-                  as ClojurePsiElement))
+    private fun isLetMacroBindingToAFunction(element: ClojurePsiElement) =
+        ((element.parent as ClListLike).type == VECTOR &&
+                element.type == SYMBOL &&
+                element.parent.parent.children[0].text.matches(letSpecialFormRegex) &&
+                isFunctionExpression(
+                    element.parent.children[element.parent.children.indexOf(element) + 1]
+                            as ClojurePsiElement
+                ))
 
-  private fun isLetFnMacroBindingToAFunction(element: ClojurePsiElement) =
-      (element.parent.parent.parent.children[0].text.matches(letfnSpecialFormRegex) &&
-          (element.parent.parent as ClListLike).type == VECTOR &&
-          (element.parent as ClListLike).type == LIST &&
-          element.parent.children.firstOrNull { (it as ClojurePsiElement).type == SYMBOL } ===
-              element)
+    private fun isLetFnMacroBindingToAFunction(element: ClojurePsiElement) =
+        (element.parent.parent.parent.children[0].text.matches(letfnSpecialFormRegex) &&
+                (element.parent.parent as ClListLike).type == VECTOR &&
+                (element.parent as ClListLike).type == LIST &&
+                element.parent.children.firstOrNull { (it as ClojurePsiElement).type == SYMBOL } ===
+                element)
 
-  private fun isFunctionExpression(element: ClojurePsiElement) =
-      (element.type == SHARP && (element.children[0] as ClListLike).type == LIST) ||
-          element.children[0].text.matches(functionMacrosRegex)
+    private fun isFunctionExpression(element: ClojurePsiElement) =
+        (element.type == SHARP && (element.children[0] as ClListLike).type == LIST) ||
+                element.children[0].text.matches(functionMacrosRegex)
 }

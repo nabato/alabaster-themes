@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.42]
+- Warning highlighting improvements, etc.
+
 ## [1.0.41]
 - Better highlighting for XML, JSON, etc.
 
@@ -27,7 +30,7 @@
 - Fixed second light theme
 
 ## [1.0.34]
-- Better highlighting for clojure light themes
+- Better highlighting for Clojure light themes
 
 ## [1.0.33]
 - Cleanup

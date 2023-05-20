@@ -1,14 +1,13 @@
 <scheme name="Alabaster BG" version="142" parent_scheme="Default">
     <metaInfo>
-        <property name="created">2023-01-10T13:38:02</property>
+        <property name="created">2023-05-20T20:22:45</property>
         <property name="ide">idea</property>
-        <property name="ideVersion">2022.3.1.0.0</property>
-        <property name="modified">2023-01-10T13:38:07</property>
+        <property name="ideVersion">2023.1.1.0.0</property>
+        <property name="modified">2023-05-20T20:22:50</property>
     </metaInfo>
     <colors>
         <option name="CARET_COLOR" value="7acc" />
         <option name="CARET_ROW_COLOR" value="" />
-        <option name="CONSOLE_BACKGROUND_KEY" value="ffffff" />
         <option name="READONLY_BACKGROUND" value="efefef" />
         <option name="SELECTION_BACKGROUND" value="b4d8fd" />
         <option name="SELECTION_FOREGROUND" value="" />
@@ -226,13 +225,22 @@
             </value>
         </option>
         <option name="DEFAULT_BRACES">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
+            </value>
         </option>
         <option name="DEFAULT_BRACKETS">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
+            </value>
         </option>
         <option name="DEFAULT_CLASS_NAME">
             <value />
+        </option>
+        <option name="DEFAULT_COMMA">
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
+            </value>
         </option>
         <option name="DEFAULT_CONSTANT">
             <value />
@@ -259,7 +267,9 @@
             </value>
         </option>
         <option name="DEFAULT_DOT">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
+            </value>
         </option>
         <option name="DEFAULT_ENTITY">
             <value>
@@ -310,8 +320,15 @@
                 <option name="FOREGROUND" value="7a3e9d" />
             </value>
         </option>
+        <option name="DEFAULT_OPERATION_SIGN">
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
+            </value>
+        </option>
         <option name="DEFAULT_PARENTHS">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
+            </value>
         </option>
         <option name="DEFAULT_PREDEFINED_SYMBOL">
             <value />
@@ -324,6 +341,11 @@
         <option name="DEFAULT_REASSIGNED_PARAMETER">
             <value>
                 <option name="EFFECT_TYPE" value="1" />
+            </value>
+        </option>
+        <option name="DEFAULT_SEMICOLON">
+            <value>
+                <option name="FOREGROUND" value="6e6e6e" />
             </value>
         </option>
         <option name="DEFAULT_STATIC_FIELD">
@@ -630,7 +652,7 @@
         </option>
         <option name="NOT_USED_ELEMENT_ATTRIBUTES">
             <value>
-                <option name="EFFECT_COLOR" value="aaaaaa" />
+                <option name="FOREGROUND" value="808080" />
                 <option name="EFFECT_TYPE" value="2" />
             </value>
         </option>
@@ -665,7 +687,6 @@
         <option name="PY.SELF_PARAMETER">
             <value />
         </option>
-        <option name="PY.STRING.B" baseAttributes="DEFAULT_STRING" />
         <option name="RDOC_DIRECTIVE">
             <value />
         </option>
@@ -829,6 +850,9 @@
                 <option name="FOREGROUND" value="7f0000" />
             </value>
         </option>
+        <option name="TEXT">
+            <value />
+        </option>
         <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
             <value>
                 <option name="BACKGROUND" value="ffbc5d" />
@@ -869,6 +893,7 @@
         <option name="WARNING_ATTRIBUTES">
             <value>
                 <option name="EFFECT_COLOR" value="ebc44d" />
+                <option name="ERROR_STRIPE_COLOR" value="ebc44d" />
                 <option name="EFFECT_TYPE" value="2" />
             </value>
         </option>

@@ -41,7 +41,6 @@ val functionConstructorRegex =
 val requireRegex = Regex("\\brequire\\b")
 
 class JSAnnotator : Annotator {
-
   override fun annotate(element: PsiElement, holder: AnnotationHolder) {
     try {
       if (element is LeafPsiElement) {
@@ -86,14 +85,10 @@ class JSAnnotator : Annotator {
       return true
     }
 
-    if (element.text.matches(symbolRegex) &&
+    return element.text.matches(symbolRegex) &&
         element.parent.parent.elementType == DESTRUCTURING_SHORTHANDED_PROPERTY &&
         element.parent.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
-        element.parent.parent.parent.parent.children[1].text.matches(mathObjectRegex)) {
-      return true
-    }
-
-    return false
+        element.parent.parent.parent.parent.children[1].text.matches(mathObjectRegex)
   }
 
   private fun isFunctionIdentifier(element: PsiElement): Boolean {
@@ -104,19 +99,13 @@ class JSAnnotator : Annotator {
     if (element.parent.elementType in assignmentExpressionTypes &&
         element.parent.children[0] !== element &&
         isFunctionExpression(element.parent.children[0])) {
-
       return true
     }
 
-    if (element.parent.elementType == REFERENCE_EXPRESSION &&
+    return element.parent.elementType == REFERENCE_EXPRESSION &&
         element.parent.parent.elementType == DEFINITION_EXPRESSION &&
         element.parent.parent.parent.elementType == ASSIGNMENT_EXPRESSION &&
-        isFunctionExpression(element.parent.parent.parent.children[1])) {
-
-      return true
-    }
-
-    return false
+        isFunctionExpression(element.parent.parent.parent.children[1])
   }
 
   private fun isFunctionExpression(element: PsiElement) =

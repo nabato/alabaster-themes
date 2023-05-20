@@ -5,4 +5,3 @@
                 implementationClass="com.vlnabatov.alabaster.extensions.annotation.JavaAnnotator"/>
     </extensions>
 </idea-plugin>
-
