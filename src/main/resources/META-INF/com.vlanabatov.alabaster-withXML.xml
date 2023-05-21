@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator
+                language="XML"
+                implementationClass="com.vlnabatov.alabaster.extensions.annotation.XMLAnnotator"/>
+    </extensions>
+</idea-plugin>

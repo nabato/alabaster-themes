@@ -1,10 +1,10 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
+import annotateString
 import clojure.lang.Keyword
 import clojure.lang.PersistentHashMap
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
-import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
 import com.intellij.lang.annotation.HighlightSeverity.TEXT_ATTRIBUTES
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
@@ -13,13 +13,13 @@ import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import com.intellij.psi.util.elementType
 import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
 import cursive.psi.impl.ClStringLiteral
 import cursive.psi.impl.synthetic.SyntheticSymbol
-import cursive.parser.ClojureElementType
+import org.jetbrains.kotlin.psi.psiUtil.endOffset
+import org.jetbrains.kotlin.psi.psiUtil.startOffset
 import java.awt.Font
 
 
@@ -47,20 +47,8 @@ class ClojureAnnotator : Annotator {
 //                println(element.text)
 //                holder
 //                    .newSilentAnnotation(TEXT_ATTRIBUTES)
-//                    .range(TextRange.from(element.textOffset, element.textOffset + 2))
+//                    .range(TextRange(element.textOffset, element.textOffset + 2))
 //                    .textAttributes(STRING)
-//                    .create()
-//                return
-//            }
-//            if (element is ClStringLiteral && element.text.contains("method")) {
-//                println(element.elementType)
-//                println(element.elementType!!::class.qualifiedName)
-//                println(EditorColorsManager.getInstance().globalScheme)
-//
-//                holder
-//                    .newSilentAnnotation(INFORMATION)
-//                    .range(TextRange.from(element.textOffset - 1, element.textOffset - 1 + 10))
-//                    .textAttributes(BRACES)
 //                    .create()
 //                return
 //            }
@@ -79,13 +67,12 @@ class ClojureAnnotator : Annotator {
                 namespacedKeywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
                     holder
                         .newSilentAnnotation(TEXT_ATTRIBUTES)
-                        .range(
-                            TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first)
-                        )
+                        .range(TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
                         .textAttributes(BRACES)
                         .create()
                 }
             }
+
             if (element.parent is ClListLike) {
                 if (isBasicFunctionDeclaration(element) ||
                     isPolymorphicFunctionDeclaration(element) ||
@@ -100,6 +87,8 @@ class ClojureAnnotator : Annotator {
                         .create()
                 }
             }
+
+            if (element is ClStringLiteral) { annotateString(element, holder) }
 
             if (isMacroCall(element) && !isClojureLangNSCall(element)) {
                 holder

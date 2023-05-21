@@ -1,18 +1,20 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
+import annotateString
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
-import com.intellij.psi.JavaTokenType.*
 import com.intellij.psi.PsiElement
+import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.util.elementType
+import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes.*
 
-import annotateString
 
-private val valTokens = setOf(TRUE_KEYWORD, FALSE_KEYWORD, NULL_KEYWORD)
+private val valTokens = setOf(NULL,BOOLEAN_CONSTANT, FLOAT_CONSTANT, CHARACTER_CONSTANT, INTEGER_CONSTANT)
 
-class JavaAnnotator : Annotator {
+
+class KtAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         try {
             // constants
@@ -20,10 +22,8 @@ class JavaAnnotator : Annotator {
                 holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
             }
             // strings
-            if (element.elementType === STRING_LITERAL || element.elementType === TEXT_BLOCK_LITERAL) {
-                val numberOfQuotationMarks = if (element.elementType === TEXT_BLOCK_LITERAL) 3 else 1
-
-                annotateString(element, holder, numberOfQuotationMarks)
+            if (element.elementType === STRING_TEMPLATE) {
+                annotateString(element, holder, (element.firstChild as LeafPsiElement).cachedLength)
             }
         } catch (e: Exception) {
             /* Should not happen */

@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.50]
+- Fancy strings, XML (HTML, etc.) improvements, Kotlin constants 
+
 ## [1.0.42]
 - Warning highlighting improvements, etc.
 
