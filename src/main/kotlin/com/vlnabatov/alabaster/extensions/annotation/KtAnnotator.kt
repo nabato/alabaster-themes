@@ -1,9 +1,10 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
-import annotateString
+import annotateSeparationMarks
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
@@ -23,7 +24,7 @@ class KtAnnotator : Annotator {
             }
             // strings
             if (element.elementType === STRING_TEMPLATE) {
-                annotateString(element, holder, (element.firstChild as LeafPsiElement).cachedLength)
+                annotateSeparationMarks(element, holder, BRACES, (element.firstChild as LeafPsiElement).cachedLength)
             }
         } catch (e: Exception) {
             /* Should not happen */

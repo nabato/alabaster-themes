@@ -1,7 +1,8 @@
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*
 import com.intellij.openapi.editor.colors.EditorColorsManager
+import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -18,21 +19,21 @@ fun isBGTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name
 fun isDarkTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(DarkTheme)
 
 
-fun annotateString(element: PsiElement, holder: AnnotationHolder, numberOfQuotationMarks: Int = 1) {
-    annotateString(element, holder, numberOfQuotationMarks, numberOfQuotationMarks)
+fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfQuotationMarks: Int = 1) {
+    annotateSeparationMarks(element, holder, textAttributesKey, numberOfQuotationMarks, numberOfQuotationMarks)
 }
 
-fun annotateString(element: PsiElement, holder: AnnotationHolder, numberOfOpeningQuotationMarks: Int = 1, numberOfClosingQuotationMarks: Int = 1) {
+fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfOpeningQuotationMarks: Int = 1, numberOfClosingQuotationMarks: Int = 1) {
     holder
         .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
         .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
-        .textAttributes(DefaultLanguageHighlighterColors.BRACES)
+        .textAttributes(BRACES)
         .create()
 
     holder
         .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
         .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
-        .textAttributes(DefaultLanguageHighlighterColors.BRACES)
+        .textAttributes(BRACES)
         .create()
 
     if (isBGTheme()) {
@@ -40,7 +41,7 @@ fun annotateString(element: PsiElement, holder: AnnotationHolder, numberOfOpenin
             .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
             .enforcedTextAttributes(TextAttributes(null, EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultBackground, null, null, Font.PLAIN))
-            .textAttributes(DefaultLanguageHighlighterColors.BRACES)
+            .textAttributes(BRACES)
             .create()
 
         holder

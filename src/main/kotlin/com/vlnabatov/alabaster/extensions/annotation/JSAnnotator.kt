@@ -1,6 +1,6 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
-import annotateString
+import annotateSeparationMarks
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
@@ -70,7 +70,7 @@ class JSAnnotator : Annotator {
                     (element.elementType === BACKQUOTE &&
                             element.parent.elementType === STRING_TEMPLATE_EXPRESSION &&
                             (element === element.parent.firstChild || element === element.parent.lastChild))) {
-                    annotateString(element, holder)
+                    annotateSeparationMarks(element, holder)
                 }
             }
         } catch (e: Exception) {
