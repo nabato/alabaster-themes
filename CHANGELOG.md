@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.51]
+- Fancier Clojure highlighting
+
 ## [1.0.50]
 - Fancy strings, XML (HTML, etc.) improvements, Kotlin constants 
 

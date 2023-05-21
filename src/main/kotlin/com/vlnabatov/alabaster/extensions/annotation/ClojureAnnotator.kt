@@ -3,7 +3,6 @@ package com.vlnabatov.alabaster.extensions.annotation
 import annotateSeparationMarks
 import clojure.lang.Keyword
 import clojure.lang.PersistentHashMap
-import clojure.lang.Symbol
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.TEXT_ATTRIBUTES
@@ -14,28 +13,19 @@ import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.psi.util.elementType
 import com.intellij.ui.JBColor
 import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
-import cursive.psi.api.ClMetadata
-import cursive.psi.impl.ClNamespacedMap
-import cursive.psi.impl.ClSharp
-import cursive.psi.impl.ClStringLiteral
 import cursive.psi.impl.synthetic.SyntheticSymbol
+import isBGTheme
 import org.jetbrains.kotlin.psi.psiUtil.endOffset
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 import java.awt.Font
 
-import isBGTheme
 
-
-val metadata: Keyword = Keyword.find("metadata")
 val macro: Keyword = Keyword.find("macro")
-val namespacedMap: Keyword = Keyword.find("namespaced-map")
 val ns: Keyword = Keyword.find("ns")
-val sharp: Keyword = Keyword.find("sharp")
 
 val clojureLangNSPatternRegex = Regex("clojure\\..*")
 
@@ -47,79 +37,62 @@ val polymorphicMacroRegex =
     Regex("\\bdefinterface|defprotocol|deftype|extend-type|extend-protocol|reify\\b")
 val compiledPolymorphicMacroRegex = Regex("\\bgen-class|gen-interface\\b")
 val methodsKeywordRegex = Regex("\\B:methods\\b")
-val namespacedKeywordSpecialCharactersRegex = Regex("[:/.]")
+val keywordSpecialCharactersRegex = Regex("[:/.]")
 
 class ClojureAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (element !is ClojurePsiElement) return
 
         try {
-//            when (element.type) {
-//                metadata, namespacedMap, sharp -> holder
-//                    .newSilentAnnotation(TEXT_ATTRIBUTES)
-//                    .range(TextRange(element.startOffset, element.startOffset + element.children[0].startOffsetInParent))
-//                    .textAttributes(BRACES)
-//                    .create()
-//            }
-
-            // decorators for metadata, namespaced map, regex
-            if (element.type === metadata || element.type === namespacedMap || element.type === sharp) {
-                holder
-                    .newSilentAnnotation(TEXT_ATTRIBUTES)
-                    .range(TextRange(element.startOffset, element.startOffset + element.children[0].startOffsetInParent))
-                    .textAttributes(BRACES)
-                    .create()
-            }
-
-            if (element.parent is ClNamespacedMap && element.type === SYMBOL) {
-                holder
-                    .newSilentAnnotation(TEXT_ATTRIBUTES)
-                    .textAttributes(MARKUP_ENTITY)
-                    .create()
-            }
-
-            // keywords
-            if (element.type === KEYWORD || (element.parent as ClojurePsiElement).type === KEYWORD) {
-                namespacedKeywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
+            when (element.type) {
+                // highlight keywords' special characters differently
+                KEYWORD -> keywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
                     holder
                         .newSilentAnnotation(TEXT_ATTRIBUTES)
                         .range(TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
                         .textAttributes(BRACES)
                         .create()
                 }
-            }
+                LIST -> {
+                    // highlight outer braces of the top forms in black in Alabaster BG theme
+                    if (isBGTheme() && element.parent is PsiFile) {
+                        holder
+                            .newSilentAnnotation(TEXT_ATTRIBUTES)
+                            .range(TextRange(element.startOffset, element.startOffset + 1))
+                            .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
+                            .create()
 
-            // strings
-            if (element is ClStringLiteral) {
-                annotateSeparationMarks(element, holder)
-            }
-
-            //function declarations
-            if (isFunctionDeclaration(element)) {
-                holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(FUNCTION_DECLARATION).create()
-            }
-
-            // non-STD macros' calls
-            if (isMacroCall(element) && !isClojureLangNSCall(element)) {
-                holder
+                        holder
+                            .newSilentAnnotation(TEXT_ATTRIBUTES)
+                            .range(TextRange(element.endOffset - 1, element.endOffset))
+                            .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
+                            .create()
+                    }
+                }
+                // highlight decorators for metadata, namespaced map, regex differently
+                METADATA, NAMESPACED_MAP, SHARP -> holder
                     .newSilentAnnotation(TEXT_ATTRIBUTES)
-                    .enforcedTextAttributes(TextAttributes(null, null, null, null, Font.ITALIC))
+                    .range(TextRange(element.startOffset, element.startOffset + element.children[0].startOffsetInParent))
+                    .textAttributes(BRACES)
                     .create()
-            }
+                // highlight quotation marks differently
+                STRING -> annotateSeparationMarks(element, holder)
+                // highlight namespaced symbol as keywords
+                SYMBOL -> {
+                    if ((element.parent as ClojurePsiElement).type === NAMESPACED_MAP) {
+                        holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
+                    }
 
-            if (isBGTheme()) {
-                if (element.parent is PsiFile && element is ClListLike) {
-                    holder
-                        .newSilentAnnotation(TEXT_ATTRIBUTES)
-                        .range(TextRange(element.startOffset, element.startOffset + 1))
-                        .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
-                        .create()
-
-                    holder
-                        .newSilentAnnotation(TEXT_ATTRIBUTES)
-                        .range(TextRange(element.endOffset - 1, element.endOffset))
-                        .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
-                        .create()
+                    if (isFunctionDeclaration(element)) {
+                        holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(FUNCTION_DECLARATION).create()
+                    }
+                    // non-STD macros' calls
+                    if (isMacroCall(element) && !isClojureLangNSCall(element)) {
+                        holder
+                            .newSilentAnnotation(TEXT_ATTRIBUTES)
+                            .enforcedTextAttributes(TextAttributes(null, null, null, null, Font.ITALIC))
+                            .create()
+                    }
                 }
             }
         } catch (e: Exception) {
@@ -137,12 +110,12 @@ class ClojureAnnotator : Annotator {
             .matches(clojureLangNSPatternRegex)
 
     private fun isFunctionDeclaration(element: ClojurePsiElement) =
-        element.parent is ClListLike && 
-                (isBasicFunctionDeclaration(element) || 
-                        isPolymorphicFunctionDeclaration(element) || 
-                        isCompiledPolymorphicFunctionDeclaration(element) || 
-                        isVariableDeclarationWithFunctionAssignment(element) || 
-                        isLetMacroBindingToAFunction(element) || 
+        element.parent is ClListLike &&
+                (isBasicFunctionDeclaration(element) ||
+                        isPolymorphicFunctionDeclaration(element) ||
+                        isCompiledPolymorphicFunctionDeclaration(element) ||
+                        isVariableDeclarationWithFunctionAssignment(element) ||
+                        isLetMacroBindingToAFunction(element) ||
                         isLetFnMacroBindingToAFunction(element))
 
     private fun isBasicFunctionDeclaration(element: ClojurePsiElement) =
