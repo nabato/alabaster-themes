@@ -13,14 +13,15 @@ import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.ui.JBColor
+import cursive.lexer.ClojureTokenTypes
+import cursive.lexer.ClojureTokenTypes.*
 import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
 import cursive.psi.impl.synthetic.SyntheticSymbol
 import isBGTheme
-import org.jetbrains.kotlin.psi.psiUtil.endOffset
-import org.jetbrains.kotlin.psi.psiUtil.startOffset
 import java.awt.Font
 
 
@@ -37,66 +38,82 @@ val polymorphicMacroRegex =
     Regex("\\bdefinterface|defprotocol|deftype|extend-type|extend-protocol|reify\\b")
 val compiledPolymorphicMacroRegex = Regex("\\bgen-class|gen-interface\\b")
 val methodsKeywordRegex = Regex("\\B:methods\\b")
-val keywordSpecialCharactersRegex = Regex("[:/.]")
+val keywordSpecialCharactersRegex = Regex(":_/|[:/.]")
+
+// Technically BACKQUOTE is a form prefix punctuation mark, but we'll treat it as symbol prefix one to make it pleasing
+val symbolPrefixPunctuationMarks = setOf(AT, BACKQUOTE, TILDA, TILDAAT, QUOTE)
+
+// Technically UP is a symbol prefix punctuation mark, but we'll treat it as form prefix one to make it pleasing
+val formPrefixPunctuationMarks = setOf(
+    LEFT_CURLY,
+    LEFT_PAREN,
+    LEFT_SQUARE,
+    RIGHT_CURLY,
+    RIGHT_PAREN,
+    RIGHT_SQUARE,
+    ClojureTokenTypes.SHARP,
+    SHARP_COLON,
+    SHARP_CURLY,
+    SHARP_DOUBLE_COLON,
+    SHARP_QUESTION,
+    SHARP_QUESTION_AT,
+    SHARP_QUOTE,
+    SHARPUP,
+    UP
+)
 
 class ClojureAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        if (element !is ClojurePsiElement) return
+        if (element !is LeafPsiElement) return
 
         try {
-            when (element.type) {
+            when (element.elementType) {
+                LEFT_PAREN, RIGHT_PAREN -> {
+                    // highlight outer braces of the top forms in black in Alabaster BG theme
+                    if (isBGTheme() && element.parent.parent is PsiFile) {
+                        holder
+                            .newSilentAnnotation(TEXT_ATTRIBUTES)
+                            .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
+                            .create()
+                    }
+                }
+
+                in ALL_LITERALS -> holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
                 // highlight keywords' special characters differently
-                KEYWORD -> keywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
+                KEYWORD_TOKEN -> keywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
                     holder
                         .newSilentAnnotation(TEXT_ATTRIBUTES)
-                        .range(TextRange.from(element.textOffset + f.range.first, f.range.last - f.range.first))
+                        .range(TextRange.from(element.textOffset + f.range.first, f.value.length))
                         .textAttributes(BRACES)
                         .create()
                 }
-                LIST -> {
-                    // highlight outer braces of the top forms in black in Alabaster BG theme
-                    if (isBGTheme() && element.parent is PsiFile) {
-                        holder
-                            .newSilentAnnotation(TEXT_ATTRIBUTES)
-                            .range(TextRange(element.startOffset, element.startOffset + 1))
-                            .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
-                            .create()
 
-                        holder
-                            .newSilentAnnotation(TEXT_ATTRIBUTES)
-                            .range(TextRange(element.endOffset - 1, element.endOffset))
-                            .enforcedTextAttributes(TextAttributes(JBColor.BLACK, null, null, null, Font.PLAIN))
-                            .create()
-                    }
-                }
-                // highlight decorators for metadata, namespaced map, regex differently
-                METADATA, NAMESPACED_MAP, SHARP -> holder
-                    .newSilentAnnotation(TEXT_ATTRIBUTES)
-                    .range(TextRange(element.startOffset, element.startOffset + element.children[0].startOffsetInParent))
-                    .textAttributes(BRACES)
-                    .create()
-                // highlight quotation marks differently
-                STRING -> annotateSeparationMarks(element, holder)
-                // highlight namespaced symbol as keywords
-                SYMBOL -> {
-                    if ((element.parent as ClojurePsiElement).type === NAMESPACED_MAP) {
+                SYMBOL_TOKEN -> {
+                    if ((element.parent.parent as ClojurePsiElement).type === NAMESPACED_MAP) {
                         holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
                     }
 
-                    if (isFunctionDeclaration(element)) {
+                    if (isFunctionDeclaration(element.parent as ClojurePsiElement)) {
                         holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(FUNCTION_DECLARATION).create()
                     }
                     // non-STD macros' calls
-                    if (isMacroCall(element) && !isClojureLangNSCall(element)) {
+                    if (isMacroCall(element.parent as ClojurePsiElement) && !isClojureLangNSCall(element.parent as ClojurePsiElement)) {
                         holder
                             .newSilentAnnotation(TEXT_ATTRIBUTES)
                             .enforcedTextAttributes(TextAttributes(null, null, null, null, Font.ITALIC))
                             .create()
                     }
                 }
+                // highlight decorators for metadata, namespaced map, regex differently
+                in SEPARATORS, in formPrefixPunctuationMarks ->
+                    holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
+
+                in symbolPrefixPunctuationMarks ->
+                    if (isBGTheme()) holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
+                // highlight quotation marks differently
+                STRING_LITERAL -> annotateSeparationMarks(element, holder)
             }
-        } catch (e: Exception) {
-            /* Should not happen */
+        } catch (e: Exception) { /* Should not happen */
         }
     }
 
@@ -165,6 +182,6 @@ class ClojureAnnotator : Annotator {
                 element)
 
     private fun isFunctionExpression(element: ClojurePsiElement) =
-        (element.type == SHARP && (element.children[0] as ClListLike).type == LIST) ||
+        (element.type == ClojurePsiElement.SHARP && (element.children[0] as ClListLike).type == LIST) ||
                 element.children[0].text.matches(functionMacrosRegex)
 }

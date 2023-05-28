@@ -1,9 +1,9 @@
 <scheme name="Alabaster" version="142" parent_scheme="Default">
   <metaInfo>
-    <property name="created">2023-05-20T20:20:36</property>
+    <property name="created">2023-05-28T19:05:12</property>
     <property name="ide">idea</property>
     <property name="ideVersion">2023.1.1.0.0</property>
-    <property name="modified">2023-05-20T20:20:45</property>
+    <property name="modified">2023-05-28T19:05:17</property>
   </metaInfo>
   <colors>
     <option name="CARET_COLOR" value="7acc" />
@@ -138,8 +138,7 @@
     </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="777" />
-        <option name="BACKGROUND" value="dbecb6" />
+        <option name="FOREGROUND" value="7a3e9d" />
         <option name="EFFECT_COLOR" value="ff0000" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
@@ -199,8 +198,7 @@
     </option>
     <option name="DEFAULT_VALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="777" />
-        <option name="BACKGROUND" value="dbecb6" />
+        <option name="FOREGROUND" value="7a3e9d" />
       </value>
     </option>
     <option name="ERRORS_ATTRIBUTES">
@@ -269,6 +267,9 @@
       </value>
     </option>
     <option name="JS.EXPORTED.VARIABLE">
+      <value />
+    </option>
+    <option name="JS.GLOBAL_FUNCTION">
       <value />
     </option>
     <option name="JS.GLOBAL_VARIABLE">
@@ -369,9 +370,7 @@
       <value />
     </option>
     <option name="REGEXP.META">
-      <value>
-        <option name="FONT_TYPE" value="1" />
-      </value>
+      <value />
     </option>
     <option name="REGEXP.QUANTIFIER">
       <value />

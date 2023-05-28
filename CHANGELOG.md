@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.52]
+- Many small improvements
+
 ## [1.0.51]
 - Fancier Clojure highlighting
 
@@ -15,7 +18,6 @@
 
 ## [1.0.41]
 - Better highlighting for XML, JSON, etc.
-
 
 ## [1.0.40]
 - Cleanup

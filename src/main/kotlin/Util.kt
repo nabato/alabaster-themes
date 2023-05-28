@@ -10,9 +10,9 @@ import org.jetbrains.kotlin.psi.psiUtil.endOffset
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 import java.awt.Font
 
-val theme = "Alabaster"
-val BGTheme = "$theme BG"
-val DarkTheme = "$theme Dark"
+const val theme = "Alabaster"
+const val BGTheme = "$theme BG"
+const val DarkTheme = "$theme Dark"
 
 fun isDefaultTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(theme)
 fun isBGTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(BGTheme)
