@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.53]
+- BG theme improvements
+
 ## [1.0.52]
 - Many small improvements
 
