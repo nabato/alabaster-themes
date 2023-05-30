@@ -32,8 +32,8 @@ val clojureLangNSPatternRegex = Regex("clojure\\..*")
 
 val variableMacroRegex = Regex("\\bdef\\b")
 val functionMacrosRegex = Regex("\\bfn|defn|defn-|defmulti|defmethod|defmacro|deftest\\b")
-var letSpecialFormRegex = Regex("\\blet|if-let|when-let\\b")
-var letfnSpecialFormRegex = Regex("\\bletfn\\b")
+val letSpecialFormRegex = Regex("\\blet|if-let|when-let\\b")
+val letfnSpecialFormRegex = Regex("\\bletfn\\b")
 val polymorphicMacroRegex =
     Regex("\\bdefinterface|defprotocol|deftype|extend-type|extend-protocol|reify\\b")
 val compiledPolymorphicMacroRegex = Regex("\\bgen-class|gen-interface\\b")
