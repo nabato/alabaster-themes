@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes.*
 private val valTokens = setOf(NULL,BOOLEAN_CONSTANT, FLOAT_CONSTANT, CHARACTER_CONSTANT, INTEGER_CONSTANT)
 
 
-class KtAnnotator : Annotator {
+class KotlinAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         try {
             // constants

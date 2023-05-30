@@ -22,8 +22,6 @@ import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
 import cursive.psi.impl.synthetic.SyntheticSymbol
 import com.vlnabatov.alabaster.isBGTheme
-import cursive.psi.ClojureLineCommentManipulator
-import cursive.psi.impl.ClLineComment
 import java.awt.Font
 
 
@@ -113,7 +111,9 @@ class ClojureAnnotator : Annotator {
                 in symbolPrefixPunctuationMarks ->
                     if (isBGTheme()) holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
                 // highlight quotation marks differently
-                STRING_LITERAL -> annotateSeparationMarks(element, holder)
+                STRING_LITERAL -> {
+                    annotateSeparationMarks(element, holder)
+                }
             }
         } catch (e: Exception) { /* Should not happen */
         }

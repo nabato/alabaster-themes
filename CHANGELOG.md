@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.54]
+- Default theme fix
+
 ## [1.0.53]
 - BG theme improvements
 

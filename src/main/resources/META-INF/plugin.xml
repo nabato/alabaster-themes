@@ -12,7 +12,7 @@
     <depends>com.intellij.laf.macos</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withClj.xml">com.cursiveclojure.cursive</depends>
+            config-file="com.vlanabatov.alabaster-withClojure.xml">com.cursiveclojure.cursive</depends>
     <depends
             optional="true"
             config-file="com.vlanabatov.alabaster-withJS.xml">JavaScript</depends>
@@ -21,54 +21,16 @@
             config-file="com.vlanabatov.alabaster-withJava.xml">com.intellij.java</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withKt.xml">org.jetbrains.kotlin</depends>
+            config-file="com.vlanabatov.alabaster-withKotlin.xml">org.jetbrains.kotlin</depends>
     <depends
             optional="true"
             config-file="com.vlanabatov.alabaster-withXML.xml">com.intellij.modules.xml</depends>
 
-    <applicationListeners>
-        <listener
-                class="com.vlnabatov.alabaster.listeners.LafManagerListener"
-                topic="com.intellij.ide.ui.LafManagerListener"/>
-    </applicationListeners>
-
-<!--    <applicationListeners>-->
-<!--        <listener class="com.vlnabatov.alabaster.InspectionLensPluginListener" topic="com.intellij.ide.plugins.DynamicPluginListener" />-->
-<!--    </applicationListeners>-->
-
-<!--    <projectListeners>-->
-<!--        <listener class="com.vlnabatov.alabaster.InspectionLensFileOpenedListener" topic="com.intellij.openapi.fileEditor.FileOpenedSyncListener" />-->
-<!--    </projectListeners>-->
-
     <extensions defaultExtensionNs="com.intellij">
-<!--        <applicationService serviceImplementation="com.vlnabatov.alabaster.InspectionLensPluginDisposableService" />-->
 <!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.macos.MacLafProvider" os="mac"/>-->
 <!--        <lafProvider implementation="com.intellij.alabaster.laf.win10.WinLafProvider" os="windows"/>-->
         <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>
         <themeProvider id="com.vlnabatov.alabaster-bg" path="/META-INF/alabaster-bg.theme.json"/>
         <themeProvider id="com.vlnabatov.alabaster-dark" path="/META-INF/alabaster-dark.theme.json"/>
-<!--        <applicationService serviceImplementation="com.vlnabatov.alabaster.services.MyApplicationService"/>-->
-<!--        <projectService serviceImplementation="com.vlnabatov.alabaster.services.MyProjectService"/>-->
-        <!--        <multiHostInjector-->
-        <!--                implementation="com.vlnabatov.alabaster.intelliLang.inject.clojure.RegExpToClojureInjector"/>-->
     </extensions>
-    <!--    <extensions defaultExtensionNs="org.intellij.intelliLang">-->
-    <!--        <languageSupport-->
-    <!--                implementation="com.vlnabatov.alabaster.intelliLang.inject.clojure.ClojureLanguageInjectionSupport"/>-->
-    <!--    <injectionConfig config="clojureInjections.xml"/>-->
-    <!--    </extensions>-->
-<!--    <actions>-->
-
-<!--        <action id="Alabaster.Stuff.EvaluateTopForm" class="com.vlnabatov.alabaster.actions.EvaluateTopFormAction"-->
-<!--                text="Evaluate Top Form (Inline)"-->
-<!--                description="Evaluate top form (inline)">-->
-<!--            <add-to-group group-id="ToolsMenu"/>-->
-<!--        </action>-->
-
-<!--        <action id="Alabaster.Stuff.EvaluatePrevForm" class="com.vlnabatov.alabaster.actions.EvaluatePrevFormAction"-->
-<!--                text="Evaluate Previous Form (Inline)"-->
-<!--                description="Evaluate previous form (inline)">-->
-<!--            <add-to-group group-id="ToolsMenu"/>-->
-<!--        </action>-->
-<!--    </actions>-->
 </idea-plugin>
