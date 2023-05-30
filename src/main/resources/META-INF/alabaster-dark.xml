@@ -1,46 +1,27 @@
 <scheme name="Alabaster Dark" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2023-05-31T02:11:26</property>
+    <property name="created">2023-05-31T02:42:58</property>
     <property name="ide">idea</property>
     <property name="ideVersion">2023.1.2.0.0</property>
-    <property name="modified">2023-05-31T02:11:31</property>
+    <property name="modified">2023-05-31T02:43:10</property>
   </metaInfo>
   <colors>
     <option name="CARET_COLOR" value="cc7832" />
     <option name="CARET_ROW_COLOR" value="2b2d30" />
     <option name="CONSOLE_BACKGROUND_KEY" value="1e1e1e" />
     <option name="DOC_COMMENT_GUIDE" value="ffc66d" />
-    <option name="GUTTER_BACKGROUND" value="292929" />
+    <option name="GUTTER_BACKGROUND" value="2b2d30" />
     <option name="SELECTION_BACKGROUND" value="31436b" />
   </colors>
   <attributes>
-    <option name="ANNOTATION_NAME_ATTRIBUTES" baseAttributes="DEFAULT_METADATA" />
-    <option name="CONSOLE_BLACK_OUTPUT">
-      <value>
-        <option name="FOREGROUND" value="0" />
-        <option name="BACKGROUND" value="292929" />
-      </value>
+    <option name="ANNOTATION_ATTRIBUTE_NAME_ATTRIBUTES">
+      <value />
     </option>
+    <option name="ANNOTATION_NAME_ATTRIBUTES" baseAttributes="DEFAULT_METADATA" />
     <option name="CONSOLE_DARKGRAY_OUTPUT">
       <value>
         <option name="FOREGROUND" value="707070" />
         <option name="BACKGROUND" value="373737" />
-      </value>
-    </option>
-    <option name="CONSOLE_GRAY_OUTPUT">
-      <value>
-        <option name="FOREGROUND" value="ffffff" />
-        <option name="BACKGROUND" value="616161" />
-      </value>
-    </option>
-    <option name="CONSOLE_NORMAL_OUTPUT">
-      <value>
-        <option name="FOREGROUND" value="ffffff" />
-      </value>
-    </option>
-    <option name="CONSOLE_SYSTEM_OUTPUT">
-      <value>
-        <option name="FOREGROUND" value="ffffff" />
       </value>
     </option>
     <option name="CSS.COLOR">
@@ -308,11 +289,6 @@
     <option name="KOTLIN_TYPE_PARAMETER" baseAttributes="TYPE_PARAMETER_NAME_ATTRIBUTES" />
     <option name="Keyword Namespace">
       <value />
-    </option>
-    <option name="LOG_ERROR_OUTPUT">
-      <value>
-        <option name="FOREGROUND" value="ffffff" />
-      </value>
     </option>
     <option name="Map key">
       <value />

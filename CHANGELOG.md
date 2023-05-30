@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.60]
+- Fix Java's metadata in the dark theme
+
 ## [1.0.59]
 - Improvements to console in the dark theme
 
