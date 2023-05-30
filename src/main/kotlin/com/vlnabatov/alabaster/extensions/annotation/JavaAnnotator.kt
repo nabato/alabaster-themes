@@ -9,7 +9,7 @@ import com.intellij.psi.JavaTokenType.*
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 
-import annotateSeparationMarks
+import com.vlnabatov.alabaster.annotateSeparationMarks
 
 private val valTokens = setOf(TRUE_KEYWORD, FALSE_KEYWORD, NULL_KEYWORD)
 

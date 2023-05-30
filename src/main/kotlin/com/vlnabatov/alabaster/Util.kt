@@ -1,3 +1,5 @@
+package com.vlnabatov.alabaster
+
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*
@@ -12,11 +14,17 @@ import java.awt.Font
 
 const val theme = "Alabaster"
 const val BGTheme = "$theme BG"
-const val DarkTheme = "$theme Dark"
+const val darkTheme = "$theme Dark"
+
+const val macOSLightTheme = "macOS Light"
+
+val themes = setOf(theme, BGTheme, darkTheme)
+val lightThemes = setOf(theme, BGTheme)
+val darkThemes = themes subtract lightThemes
 
 fun isDefaultTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(theme)
 fun isBGTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(BGTheme)
-fun isDarkTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(DarkTheme)
+fun isDarkTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(darkTheme)
 
 
 fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfQuotationMarks: Int = 1) {

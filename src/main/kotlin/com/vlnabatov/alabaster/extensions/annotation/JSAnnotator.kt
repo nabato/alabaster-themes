@@ -1,6 +1,6 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
-import annotateSeparationMarks
+import com.vlnabatov.alabaster.annotateSeparationMarks
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.INFORMATION

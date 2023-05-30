@@ -1,6 +1,6 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
-import annotateSeparationMarks
+import com.vlnabatov.alabaster.annotateSeparationMarks
 import clojure.lang.Keyword
 import clojure.lang.PersistentHashMap
 import com.intellij.lang.annotation.AnnotationHolder
@@ -21,7 +21,9 @@ import cursive.psi.ClojurePsiElement
 import cursive.psi.ClojurePsiElement.*
 import cursive.psi.api.ClListLike
 import cursive.psi.impl.synthetic.SyntheticSymbol
-import isBGTheme
+import com.vlnabatov.alabaster.isBGTheme
+import cursive.psi.ClojureLineCommentManipulator
+import cursive.psi.impl.ClLineComment
 import java.awt.Font
 
 
