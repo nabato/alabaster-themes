@@ -115,8 +115,7 @@ class ClojureAnnotator : Annotator {
                     annotateSeparationMarks(element, holder)
                 }
             }
-        } catch (e: Exception) { /* Should not happen */
-        }
+        } catch (e: Exception) { /* Should not happen */ }
     }
 
     private fun isMacroCall(element: ClojurePsiElement): Boolean =

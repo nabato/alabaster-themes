@@ -5,6 +5,9 @@
 ## [Unreleased]
 
 ## [1.0.55]
+- Even better comment's color in dark theme
+
+## [1.0.55]
 - Better comment's color in dark theme
 
 - ## [1.0.54]

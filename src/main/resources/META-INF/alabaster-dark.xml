@@ -1,20 +1,26 @@
 <scheme name="Alabaster Dark" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2023-05-15T21:31:30</property>
+    <property name="created">2023-05-31T01:36:27</property>
     <property name="ide">idea</property>
-    <property name="ideVersion">2023.1.1.0.0</property>
-    <property name="modified">2023-05-15T21:31:34</property>
+    <property name="ideVersion">2023.1.2.0.0</property>
+    <property name="modified">2023-05-31T01:36:31</property>
   </metaInfo>
   <colors>
     <option name="CARET_COLOR" value="cc7832" />
     <option name="CARET_ROW_COLOR" value="2b2d30" />
     <option name="CONSOLE_BACKGROUND_KEY" value="1e1e1e" />
-    <option name="DOC_COMMENT_GUIDE" value="ffb700" />
+    <option name="DOC_COMMENT_GUIDE" value="ffc66d" />
     <option name="GUTTER_BACKGROUND" value="2b2d30" />
     <option name="SELECTION_BACKGROUND" value="31436b" />
   </colors>
   <attributes>
     <option name="ANNOTATION_NAME_ATTRIBUTES" baseAttributes="DEFAULT_METADATA" />
+    <option name="CONSOLE_DARKGRAY_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="707070" />
+        <option name="BACKGROUND" value="373737" />
+      </value>
+    </option>
     <option name="CSS.COLOR">
       <value />
     </option>
@@ -50,7 +56,7 @@
     </option>
     <option name="Clojure Line comment">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
       </value>
     </option>
     <option name="Clojure Literal">
@@ -65,12 +71,7 @@
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
-      </value>
-    </option>
-    <option name="DEFAULT_BRACES">
-      <value>
-        <option name="FOREGROUND" value="a9b7c6" />
+        <option name="FOREGROUND" value="ffe11f" />
       </value>
     </option>
     <option name="DEFAULT_CLASS_REFERENCE">
@@ -84,25 +85,25 @@
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
-        <option name="EFFECT_COLOR" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
+        <option name="EFFECT_COLOR" value="ffe11f" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG_VALUE">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
       </value>
     </option>
     <option name="DEFAULT_DOC_MARKUP">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
       </value>
     </option>
     <option name="DEFAULT_ENTITY">
@@ -126,7 +127,7 @@
     </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="e0acd5" />
+        <option name="FOREGROUND" value="9876aa" />
         <option name="EFFECT_COLOR" value="ff0000" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
@@ -139,7 +140,7 @@
     </option>
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
       </value>
     </option>
     <option name="DEFAULT_METADATA">
@@ -147,7 +148,7 @@
     </option>
     <option name="DEFAULT_NUMBER">
       <value>
-        <option name="FOREGROUND" value="e0acd5" />
+        <option name="FOREGROUND" value="9876aa" />
       </value>
     </option>
     <option name="DEFAULT_PREDEFINED_SYMBOL">
@@ -166,7 +167,7 @@
     <option name="DEFAULT_STATIC_METHOD" baseAttributes="DEFAULT_FUNCTION_DECLARATION" />
     <option name="DEFAULT_VALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="e0acd5" />
+        <option name="FOREGROUND" value="9876aa" />
       </value>
     </option>
     <option name="GRID_NULL_VALUE">
@@ -315,6 +316,7 @@
     <option name="PY.SELF_PARAMETER">
       <value />
     </option>
+    <option name="PY.STRING.B" baseAttributes="DEFAULT_STRING" />
     <option name="REGEXP.BRACES" baseAttributes="DEFAULT_BRACES" />
     <option name="REGEXP.BRACKETS" baseAttributes="DEFAULT_BRACKETS" />
     <option name="REGEXP.CHAR_CLASS" baseAttributes="DEFAULT_ENTITY" />
@@ -384,16 +386,21 @@
     <option name="TEMPLATE_VARIABLE_ATTRIBUTES">
       <value />
     </option>
+    <option name="TERMINAL_COMMAND_TO_RUN_USING_IDE">
+      <value>
+        <option name="FOREGROUND" value="7f00" />
+      </value>
+    </option>
     <option name="TEXT">
       <value>
-        <option name="FOREGROUND" value="a9b7c6" />
+        <option name="FOREGROUND" value="ffffff" />
         <option name="BACKGROUND" value="1e1e1e" />
         <option name="EFFECT_TYPE" value="5" />
       </value>
     </option>
     <option name="TODO_DEFAULT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="ffb700" />
+        <option name="FOREGROUND" value="ffe11f" />
         <option name="FONT_TYPE" value="2" />
         <option name="ERROR_STRIPE_COLOR" value="977ab" />
       </value>
