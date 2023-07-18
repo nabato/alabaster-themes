@@ -13,13 +13,13 @@ Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-sche
 
 Themes use Jetbrains' color palette to provide best possible experience and go further in minimalistic approach by highlighting only function declarations and omitting other global definitions. The highlighted items are (all in broad terms):
 
-#### Strings
+- **Strings**
 
-#### Constants
+- **Constants**
 
-#### Comments
+- **Comments**
 
-#### Function declarations
+- **Function declarations**
 
 <!-- Plugin description end -->
 
