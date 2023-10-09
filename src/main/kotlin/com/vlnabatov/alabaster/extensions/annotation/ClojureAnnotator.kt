@@ -9,6 +9,7 @@ import com.intellij.lang.annotation.HighlightSeverity.TEXT_ATTRIBUTES
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
+import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -84,7 +85,7 @@ class ClojureAnnotator : Annotator {
                     holder
                         .newSilentAnnotation(TEXT_ATTRIBUTES)
                         .range(TextRange.from(element.textOffset + f.range.first, f.value.length))
-                        .textAttributes(BRACES)
+                        .enforcedTextAttributes(TextAttributes(EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground, null, null, null, Font.PLAIN))
                         .create()
                 }
 

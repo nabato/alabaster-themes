@@ -7,9 +7,9 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    kotlin("jvm") version "1.9.0-Beta"
+    kotlin("jvm") version "1.9.10"
     // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.13.3"
+    id("org.jetbrains.intellij") version "1.16.0"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "2.0.0"
     // Gradle Qodana Plugin
@@ -107,19 +107,19 @@ tasks {
         systemProperty("jb.consents.confirmation.enabled", "false")
     }
 
-    signPlugin {
-        val cc = project.property("CERTIFICATE_CHAIN") as String
-        val pk = project.property("PRIVATE_KEY") as String
-        val pkp = project.property("PRIVATE_KEY_PASSWORD") as String
-        certificateChain.set(File(cc).readText())
-        privateKey.set(File(pk).readText())
-        password.set(pkp)
-    }
+//    signPlugin {
+//        val cc = project.property("CERTIFICATE_CHAIN") as String
+//        val pk = project.property("PRIVATE_KEY") as String
+//        val pkp = project.property("PRIVATE_KEY_PASSWORD") as String
+//        certificateChain.set(File(cc).readText())
+//        privateKey.set(File(pk).readText())
+//        password.set(pkp)
+//    }
 
     publishPlugin {
         dependsOn("patchChangelog")
-        val token = project.property("PUBLISH_TOKEN") as String
-        this.token.set(token)
+//        val token = project.property("PUBLISH_TOKEN") as String
+//        this.token.set(token)
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel

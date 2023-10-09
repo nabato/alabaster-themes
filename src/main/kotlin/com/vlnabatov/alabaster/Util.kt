@@ -16,15 +16,11 @@ const val theme = "Alabaster"
 const val BGTheme = "$theme BG"
 const val darkTheme = "$theme Dark"
 
-const val macOSLightTheme = "macOS Light"
-
-val themes = setOf(theme, BGTheme, darkTheme)
-val lightThemes = setOf(theme, BGTheme)
-val darkThemes = themes subtract lightThemes
-
 fun isDefaultTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(theme)
 fun isBGTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(BGTheme)
 fun isDarkTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.name.endsWith(darkTheme)
+
+fun isAlabasterTheme() = isDefaultTheme() || isBGTheme() || isDarkTheme()
 
 
 fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfQuotationMarks: Int = 1) {
@@ -44,18 +40,17 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
         .textAttributes(BRACES)
         .create()
 
-    if (isBGTheme()) {
+    if (isAlabasterTheme()) {
         holder
             .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
-            .enforcedTextAttributes(TextAttributes(null, EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultBackground, null, null, Font.PLAIN))
-            .textAttributes(BRACES)
+            .enforcedTextAttributes(TextAttributes(EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground, null, null, null, Font.PLAIN))
             .create()
 
         holder
             .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
-            .enforcedTextAttributes(TextAttributes(null, EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultBackground, null, null, Font.PLAIN))
+            .enforcedTextAttributes(TextAttributes(EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground, null, null, null, Font.PLAIN))
             .create()
     }
 }

@@ -3,13 +3,13 @@
     <id>com.vlnabatov.alabaster</id>
     <name>Alabaster Themes</name>
     <category>Themes</category>
-    <vendor url="https://github.com/vlnabatov"
+    <vendor url="https://github.com/nabato"
             email="nabatov.vladislav@gmail.com">
-        Vlad Nabatov
+        Vladislav Nabatov
     </vendor>
 
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.laf.macos</depends>
+<!--    <depends>com.intellij.laf.macos</depends>-->
     <depends
             optional="true"
             config-file="com.vlanabatov.alabaster-withClojure.xml">com.cursiveclojure.cursive</depends>
