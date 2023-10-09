@@ -9,7 +9,7 @@
     <option name="CARET_COLOR" value="cc7832" />
     <option name="CARET_ROW_COLOR" value="2b2d30" />
     <option name="CONSOLE_BACKGROUND_KEY" value="1e1e1e" />
-    <option name="DOC_COMMENT_GUIDE" value="edae49" />
+    <option name="DOC_COMMENT_GUIDE" value="FDC56D" />
     <option name="GUTTER_BACKGROUND" value="2b2d30" />
     <option name="SELECTION_BACKGROUND" value="31436b" />
   </colors>
@@ -59,7 +59,7 @@
     </option>
     <option name="Clojure Line comment">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
       </value>
     </option>
     <option name="Clojure Literal">
@@ -74,7 +74,7 @@
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
       </value>
     </option>
     <option name="DEFAULT_CLASS_REFERENCE">
@@ -88,25 +88,25 @@
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG">
       <value>
-        <option name="FOREGROUND" value="edae49" />
-        <option name="EFFECT_COLOR" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
+        <option name="EFFECT_COLOR" value="FDC56D" />
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG_VALUE">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
       </value>
     </option>
     <option name="DEFAULT_DOC_MARKUP">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
       </value>
     </option>
     <option name="DEFAULT_ENTITY">
@@ -143,7 +143,7 @@
     </option>
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
       </value>
     </option>
     <option name="DEFAULT_METADATA">
@@ -403,7 +403,7 @@
     </option>
     <option name="TODO_DEFAULT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="edae49" />
+        <option name="FOREGROUND" value="FDC56D" />
         <option name="FONT_TYPE" value="2" />
         <option name="ERROR_STRIPE_COLOR" value="977ab" />
       </value>
