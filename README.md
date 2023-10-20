@@ -4,8 +4,8 @@
 
 <!-- ![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg) -->
 
-[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/20748-alabaster-themes)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/20748-alabaster-themes)
 
 <!-- Plugin description -->
 
