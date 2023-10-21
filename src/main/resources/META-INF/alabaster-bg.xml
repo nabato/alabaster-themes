@@ -528,9 +528,7 @@
             <value />
         </option>
         <option name="JS.CLASS">
-            <value>
-                <option name="BACKGROUND" value="dbf1ff" />
-            </value>
+            <value />
         </option>
         <option name="JS.DECORATOR">
             <value>
@@ -540,13 +538,15 @@
         <option name="JS.EXPORTED.VARIABLE">
             <value />
         </option>
-        <option name="JS.GLOBAL_FUNCTION" baseAttributes="DEFAULT_FUNCTION_DECLARATION" />
+        <option name="JS.GLOBAL_FUNCTION">
+            <value />
+        </option>
+        <option name="JS.LOCAL_FUNCTION">
+            <value />
+        </option>
         <option name="JS.GLOBAL_VARIABLE" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
         <option name="JS.INSTANCE_MEMBER_FUNCTION">
-            <value>
-                <option name="FOREGROUND" value="0" />
-                <option name="BACKGROUND" value="ffffff" />
-            </value>
+            <value />
         </option>
         <option name="JS.INVALID_STRING_ESCAPE">
             <value>
@@ -555,6 +555,9 @@
             </value>
         </option>
         <option name="JS.LOCAL_VARIABLE" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
+        <option name="JS.VARIABLE_DEFINITION">
+            <value name="BACKGROUND" value="ebdbff" />
+        </option>
         <option name="JS.PARAMETER">
             <value>
                 <option name="EFFECT_TYPE" value="1" />

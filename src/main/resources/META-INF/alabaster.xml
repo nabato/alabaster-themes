@@ -257,11 +257,14 @@
       <value />
     </option>
     <option name="JS.CLASS">
+      <value />
+    </option>
+    <option name="JS.DECORATOR">
       <value>
         <option name="FOREGROUND" value="6086be" />
       </value>
     </option>
-    <option name="JS.DECORATOR">
+    <option name="JS.VARIABLE_DEFINITION">
       <value>
         <option name="FOREGROUND" value="6086be" />
       </value>
@@ -270,6 +273,9 @@
       <value />
     </option>
     <option name="JS.GLOBAL_FUNCTION">
+      <value />
+    </option>
+    <option name="JS.LOCAL_FUNCTION">
       <value />
     </option>
     <option name="JS.GLOBAL_VARIABLE">
