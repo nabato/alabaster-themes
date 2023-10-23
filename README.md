@@ -10,14 +10,12 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
-
-Besides the usual strings, comments and constants themes highlight only function declarations because interesting all the action happens in them.
+Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster). They highlight:
 
 - **Strings**
 - **Constants**
 - **Comments**
-- **Function declarations**
+- **Function declarations** (because all the action happens in them).
 
 <!-- Plugin description end -->
 
@@ -32,7 +30,7 @@ Besides the usual strings, comments and constants themes highlight only function
   Download the [latest release](https://github.com/vlnabatov/alabaster-theme/releases) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-<img src="collage.png" style="max-width: 2000px; width: 100%" alt="collage"/>
+<img src="collage-cropped.png" style="max-width: 2000px; width: 100%" alt="collage"/>
 
 ## Contributors
 
