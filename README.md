@@ -7,18 +7,17 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/20748-alabaster-themes)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/20748-alabaster-themes.svg)](https://plugins.jetbrains.com/plugin/20748-alabaster-themes)
 
-<!-- Plugin description -->
+
+
+
 
 Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster) with a slight twist.
 
-Themes use Jetbrains' color palette to provide best possible experience and go further in minimalistic approach by highlighting only function declarations and omitting other global definitions. The highlighted items are (all in broad terms):
+Themes go deeper in minimalistic approach by highlighting only function declarations and omitting other global definitions because interesting stuff happens in functions. The highlighted items are (all in broad terms):
 
 - **Strings**
-
 - **Constants**
-
 - **Comments**
-
 - **Function declarations**
 
 <!-- Plugin description end -->
