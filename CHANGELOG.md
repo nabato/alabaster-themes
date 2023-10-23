@@ -4,8 +4,8 @@
 
 ## [Unreleased]
 
-## [1.0.7]
-- Javascript's function definition highlighting improvements
+## [1.0.71]
+- Better Javascript highlighting by virtue of [Nik Lopin](https://github.com/nlopin).
 
 ## [1.0.60]
 - Fix Java's metadata in the dark theme
