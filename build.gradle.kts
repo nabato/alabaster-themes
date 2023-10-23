@@ -2,6 +2,7 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 
 fun properties(key: String) = project.findProperty(key).toString()
+fun environment(key: String) = providers.environmentVariable(key).toString()
 
 plugins {
     // Java support
@@ -107,19 +108,25 @@ tasks {
         systemProperty("jb.consents.confirmation.enabled", "false")
     }
 
-//    signPlugin {
+    signPlugin {
+//        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+//        privateKey.set(System.getenv("PRIVATE_KEY"))
+//        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        certificateChain = environment("CERTIFICATE_CHAIN")
+        privateKey = environment("PRIVATE_KEY")
+        password = environment("PRIVATE_KEY_PASSWORD")
 //        val cc = project.property("CERTIFICATE_CHAIN") as String
 //        val pk = project.property("PRIVATE_KEY") as String
 //        val pkp = project.property("PRIVATE_KEY_PASSWORD") as String
 //        certificateChain.set(File(cc).readText())
 //        privateKey.set(File(pk).readText())
 //        password.set(pkp)
-//    }
+    }
 
     publishPlugin {
+//        token.set(providers.environmentVariable("PRIVATE_KEY_PASSWORD"))
         dependsOn("patchChangelog")
-//        val token = project.property("PUBLISH_TOKEN") as String
-//        this.token.set(token)
+        token = environment("PUBLISH_TOKEN")
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel

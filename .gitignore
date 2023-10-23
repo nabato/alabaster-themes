@@ -14,9 +14,6 @@ build
 .idea/**/dictionaries
 .idea/**/shelf
 
-# AWS User-specific
-.idea/**/aws.xml
-
 # Generated files
 .idea/**/contentModel.xml
 
@@ -266,7 +263,7 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij+all,intellij,intellij+iml
 
-/.keys/private.pem
-/.keys/private_encrypted.pem
-/.keys/chain.crt
-/gradle.properties
+
+/chain.crt
+/private.pem
+/private_encrypted.pem
