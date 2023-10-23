@@ -10,13 +10,13 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+<!-- Plugin description -->
 Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster). They highlight:
 
 - **Strings**
 - **Constants**
 - **Comments**
 - **Function declarations** (because all the action happens in them).
-
 <!-- Plugin description end -->
 
 ## Installation
