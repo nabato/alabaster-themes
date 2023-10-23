@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.7]
+- Javascript's function definition highlighting improvements
+
 ## [1.0.60]
 - Fix Java's metadata in the dark theme
 
