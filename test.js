@@ -83,4 +83,3 @@ const Rectangle3 = class Rectangle2 { // правильно
 };
 
 new Rectangle3(1,2 ) //правильно
-

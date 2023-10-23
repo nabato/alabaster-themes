@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 
-## [1.0.72]
+## [1.0.73]
 - Better Javascript highlighting by virtue of [Nik Lopin](https://github.com/nlopin).
 
 ## [1.0.60]
@@ -84,8 +84,8 @@
 ## [1.0.25]
 - Python improved
 
-[Unreleased]: https://github.com/nabato/alabaster-themes/compare/v1.0.72...HEAD
-[1.0.72]: https://github.com/nabato/alabaster-themes/compare/v1.0.60...v1.0.72
+[Unreleased]: https://github.com/nabato/alabaster-themes/compare/v1.0.73...HEAD
+[1.0.73]: https://github.com/nabato/alabaster-themes/compare/v1.0.60...v1.0.73
 [1.0.60]: https://github.com/nabato/alabaster-themes/compare/v1.0.59...v1.0.60
 [1.0.59]: https://github.com/nabato/alabaster-themes/compare/v1.0.58...v1.0.59
 [1.0.58]: https://github.com/nabato/alabaster-themes/compare/v1.0.56...v1.0.58
