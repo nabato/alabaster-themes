@@ -30,7 +30,7 @@ Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-sche
   Download the [latest release](https://github.com/vlnabatov/alabaster-theme/releases) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-<img src="collage-cropped.png" style="max-width: 2000px; width: 100%" alt="collage"/>
+<img src="images/collage-cropped.png" style="max-width: 2000px; width: 100%" alt="collage"/>
 
 ## Contributors
 
