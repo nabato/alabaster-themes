@@ -1,6 +1,6 @@
 # Alabaster Themes
 
-<img src="./src/main/resources/META-INF/pluginIcon.svg" style="max-width: 140px; width: 40px;"  alt="logo"/>
+<img src="./src/main/resources/META-INF/pluginIcon.svg" style="max-width: 140px; width: 60px;"  alt="logo"/>
 
 <!-- ![Build](https://github.com/vlnabatov/alabaster-theme/workflows/Build/badge.svg) -->
 
