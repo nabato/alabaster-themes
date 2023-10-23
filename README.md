@@ -12,7 +12,7 @@
 
 Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-scheme-alabaster](https://github.com/tonsky/sublime-scheme-alabaster).
 
-Besides the usual strings, comments and constants themes highlight only function declarations because interesting stuff happens in them.
+Besides the usual strings, comments and constants themes highlight only function declarations because interesting all the action happens in them.
 
 - **Strings**
 - **Constants**
