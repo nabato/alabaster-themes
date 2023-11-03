@@ -16,7 +16,7 @@ Light and dark minimal themes for Jetbrains IDEs based on [tonsky's sublime-sche
 - **Strings**
 - **Constants**
 - **Comments**
-- **Function declarations** (because all the action happens in them).
+- **Function declarations** (all the action happens in them).
 <!-- Plugin description end -->
 
 ## Installation

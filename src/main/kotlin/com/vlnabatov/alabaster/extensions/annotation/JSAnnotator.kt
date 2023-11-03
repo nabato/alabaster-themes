@@ -1,6 +1,5 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
-import com.vlnabatov.alabaster.annotateSeparationMarks
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
@@ -8,11 +7,12 @@ import com.intellij.lang.ecmascript6.ES6StubElementTypes.*
 import com.intellij.lang.javascript.JSElementTypes.*
 import com.intellij.lang.javascript.JSTokenTypes.*
 import com.intellij.lang.javascript.psi.impl.JSReferenceExpressionImpl
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
-import com.intellij.psi.PsiElement
+import com.intellij.openapi.editor.HighlighterColors.TEXT
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
+import com.vlnabatov.alabaster.annotateSeparationMarks
 
 val identifierTypes = setOf(IDENTIFIER, PRIVATE_IDENTIFIER)
 
@@ -61,8 +61,8 @@ class JSAnnotator : Annotator {
                 if (isSymbolIdentifier(element)) {
                     holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
                 } else if (element.elementType in identifierTypes) {
-                    if (isFunctionDefintion(element) || isClassDefinition(element)) {
-                        holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
+                    if (isFunctionDefinition(element) || isClassDefinition(element)) {
+                        holder.newSilentAnnotation(INFORMATION).textAttributes(TEXT).create()
                     }
                     // strings
                 } else if (element.elementType in stringTypes ||
@@ -105,7 +105,7 @@ class JSAnnotator : Annotator {
                 element.parent.parent.parent.parent.children[1].text.matches(mathObjectRegex)
     }
 
-    private fun isFunctionDefintion(element: PsiElement): Boolean {
+    private fun isFunctionDefinition(element: PsiElement): Boolean {
         if (element.parent.elementType in functionExpressionTypes) {
             return true
         }
@@ -123,9 +123,7 @@ class JSAnnotator : Annotator {
                 isFunctionExpression(element.parent.parent.parent.children[1])
     }
 
-    private fun isClassDefinition(element: LeafPsiElement): Boolean {
-        return element.parent.elementType in classTypes
-    }
+    private fun isClassDefinition(element: LeafPsiElement) = element.parent.elementType in classTypes
 
     private fun isFunctionExpression(element: PsiElement) =
         element.elementType in functionExpressionTypes ||
