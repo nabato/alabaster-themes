@@ -31,26 +31,29 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
     holder
         .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
         .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
-        .textAttributes(BRACES)
+        .textAttributes(textAttributesKey)
         .create()
 
     holder
         .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
         .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
-        .textAttributes(BRACES)
+        .textAttributes(textAttributesKey)
         .create()
 
     if (isAlabasterTheme()) {
+        val foreground = EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground
+        val background = if (isBGTheme()) EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultBackground else null
+
         holder
             .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
-            .enforcedTextAttributes(TextAttributes(EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground, null, null, null, Font.PLAIN))
+            .enforcedTextAttributes(TextAttributes(foreground, background, null, null, Font.PLAIN))
             .create()
 
         holder
             .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
-            .enforcedTextAttributes(TextAttributes(EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground, null, null, null, Font.PLAIN))
+            .enforcedTextAttributes(TextAttributes(foreground, background, null, null, Font.PLAIN))
             .create()
     }
 }
