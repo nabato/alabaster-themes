@@ -1,10 +1,8 @@
 <scheme name="Alabaster BG" version="142" parent_scheme="Default">
     <metaInfo>
-        <property name="created">2023-05-30T21:02:36</property>
+        <property name="created">2024-04-30T13:36:58</property>
         <property name="ide">idea</property>
-        <property name="ideVersion">2023.1.1.0.0</property>
-        <property name="modified">2023-05-30T21:02:42</property>
-        <property name="originalScheme">_@user_Alabaster BG</property>
+        <property name="ideVersion">2023.3.0.0</property>
     </metaInfo>
     <colors>
         <option name="CARET_COLOR" value="7acc" />
@@ -541,9 +539,6 @@
         <option name="JS.GLOBAL_FUNCTION">
             <value />
         </option>
-        <option name="JS.LOCAL_FUNCTION">
-            <value />
-        </option>
         <option name="JS.GLOBAL_VARIABLE" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
         <option name="JS.INSTANCE_MEMBER_FUNCTION">
             <value />
@@ -554,10 +549,10 @@
                 <option name="BACKGROUND" value="ffe0e0" />
             </value>
         </option>
-        <option name="JS.LOCAL_VARIABLE" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
-        <option name="JS.VARIABLE_DEFINITION">
-            <value name="BACKGROUND" value="ebdbff" />
+        <option name="JS.LOCAL_FUNCTION">
+            <value />
         </option>
+        <option name="JS.LOCAL_VARIABLE" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
         <option name="JS.PARAMETER">
             <value>
                 <option name="EFFECT_TYPE" value="1" />
@@ -568,6 +563,9 @@
             <value />
         </option>
         <option name="JS.STATIC_MEMBER_VARIABLE">
+            <value />
+        </option>
+        <option name="JS.VARIABLE_DEFINITION">
             <value />
         </option>
         <option name="JSON.KEYWORD">
