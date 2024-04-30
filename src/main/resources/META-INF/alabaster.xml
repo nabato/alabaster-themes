@@ -1,9 +1,7 @@
 <scheme name="Alabaster" version="142" parent_scheme="Default">
   <metaInfo>
-    <property name="created">2023-05-28T19:05:12</property>
     <property name="ide">idea</property>
-    <property name="ideVersion">2023.1.1.0.0</property>
-    <property name="modified">2023-05-28T19:05:17</property>
+    <property name="ideVersion">2024.1.0.0</property>
   </metaInfo>
   <colors>
     <option name="CARET_COLOR" value="7acc" />
@@ -219,10 +217,7 @@
       <value />
     </option>
     <option name="HTML_CODE">
-      <value>
-        <option name="FOREGROUND" value="448c27" />
-        <option name="EFFECT_TYPE" value="5" />
-      </value>
+      <value />
     </option>
     <option name="HTML_CUSTOM_TAG_NAME">
       <value />
@@ -264,24 +259,19 @@
         <option name="FOREGROUND" value="6086be" />
       </value>
     </option>
-    <option name="JS.VARIABLE_DEFINITION">
-      <value>
-        <option name="FOREGROUND" value="6086be" />
-      </value>
-    </option>
     <option name="JS.EXPORTED.VARIABLE">
       <value />
     </option>
     <option name="JS.GLOBAL_FUNCTION">
       <value />
     </option>
-    <option name="JS.LOCAL_FUNCTION">
-      <value />
-    </option>
     <option name="JS.GLOBAL_VARIABLE">
       <value />
     </option>
     <option name="JS.INSTANCE_MEMBER_FUNCTION">
+      <value />
+    </option>
+    <option name="JS.LOCAL_FUNCTION">
       <value />
     </option>
     <option name="JS.LOCAL_VARIABLE">
@@ -292,6 +282,11 @@
     </option>
     <option name="JS.TYPE_ALIAS">
       <value />
+    </option>
+    <option name="JS.VARIABLE_DEFINITION">
+      <value>
+        <option name="FOREGROUND" value="6086be" />
+      </value>
     </option>
     <option name="JSON.KEYWORD">
       <value>
@@ -319,7 +314,12 @@
     <option name="KOTLIN_EXTENSION_FUNCTION_CALL">
       <value />
     </option>
-    <option name="KOTLIN_LABEL" baseAttributes="DEFAULT_LABEL" />
+    <option name="KOTLIN_FUNCTION_LITERAL_BRACES_AND_ARROW">
+      <value>
+        <option name="FOREGROUND" value="89ddff" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
     <option name="KOTLIN_MUTABLE_VARIABLE">
       <value>
         <option name="EFFECT_TYPE" value="1" />
@@ -345,9 +345,8 @@
     </option>
     <option name="MATCHED_BRACE_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="b4d8fd" />
+        <option name="BACKGROUND" value="99ccbb" />
         <option name="FONT_TYPE" value="1" />
-        <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="Map key">
@@ -424,11 +423,6 @@
     </option>
     <option name="STATIC_METHOD_IMPORTED_ATTRIBUTES">
       <value />
-    </option>
-    <option name="Static method access">
-      <value>
-        <option name="FONT_TYPE" value="2" />
-      </value>
     </option>
     <option name="Symbol Namespace">
       <value />
