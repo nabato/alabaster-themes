@@ -7,6 +7,7 @@ import com.intellij.lang.ecmascript6.ES6StubElementTypes.*
 import com.intellij.lang.javascript.JSElementTypes.*
 import com.intellij.lang.javascript.JSTokenTypes.*
 import com.intellij.lang.javascript.psi.impl.JSReferenceExpressionImpl
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
 import com.intellij.openapi.editor.HighlighterColors.TEXT
 import com.intellij.psi.impl.source.tree.LeafPsiElement
@@ -62,7 +63,7 @@ class JSAnnotator : Annotator {
                     holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
                 } else if (element.elementType in identifierTypes) {
                     if (isFunctionDefinition(element) || isClassDefinition(element)) {
-                        holder.newSilentAnnotation(INFORMATION).textAttributes(TEXT).create()
+                        holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
                     }
                     // strings
                 } else if (element.elementType in stringTypes ||
