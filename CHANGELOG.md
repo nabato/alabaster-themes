@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [1.0.82]
+- Updated changelog for previous versions.
+
+## [1.0.81]
+- Svelte support, BG delimiter background fix, etc.
+
 ## [1.0.73]
 - Better Javascript highlighting by virtue of [Nik Lopin](https://github.com/nlopin).
 
