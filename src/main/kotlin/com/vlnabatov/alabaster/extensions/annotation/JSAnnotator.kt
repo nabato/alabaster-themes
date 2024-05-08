@@ -9,7 +9,6 @@ import com.intellij.lang.javascript.JSTokenTypes.*
 import com.intellij.lang.javascript.psi.impl.JSReferenceExpressionImpl
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
-import com.intellij.openapi.editor.HighlighterColors.TEXT
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType

@@ -1,10 +1,12 @@
 package com.vlnabatov.alabaster
 
+import com.intellij.codeInspection.InspectionsBundle
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.colors.TextAttributesKey
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.*
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BRACES
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STRING
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -28,6 +30,7 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
 }
 
 fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfOpeningQuotationMarks: Int = 1, numberOfClosingQuotationMarks: Int = 1) {
+    // Standard annotations for non-Alabaster editor themes
     holder
         .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
         .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
@@ -40,10 +43,11 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
         .textAttributes(textAttributesKey)
         .create()
 
+
     if (isAlabasterTheme()) {
         val foreground = EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground
         val background = if (isBGTheme()) EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultBackground else null
-
+        // Differently colored quotation marks for Alabaster themes
         holder
             .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
             .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
@@ -55,5 +59,14 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
             .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
             .enforcedTextAttributes(TextAttributes(foreground, background, null, null, Font.PLAIN))
             .create()
+
+        // Ensure string's background doesn't change when it's highlighted by the IDE or/and its plugins.
+        if (isBGTheme()) {
+            holder
+                .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
+                .range(TextRange(element.startOffset + numberOfOpeningQuotationMarks, element.endOffset - numberOfClosingQuotationMarks))
+                .enforcedTextAttributes(TextAttributes(foreground, EditorColorsManager.getInstance().schemeForCurrentUITheme.getAttributes(STRING).backgroundColor, null, null, Font.PLAIN))
+                .create()
+        }
     }
 }
