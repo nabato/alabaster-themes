@@ -12,7 +12,7 @@ import com.intellij.psi.util.elementType
 import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes.*
 
 
-private val valTokens = setOf(NULL,BOOLEAN_CONSTANT, FLOAT_CONSTANT, CHARACTER_CONSTANT, INTEGER_CONSTANT)
+private val valTokens = setOf(NULL, BOOLEAN_CONSTANT, FLOAT_CONSTANT, CHARACTER_CONSTANT, INTEGER_CONSTANT)
 
 
 class KotlinAnnotator : Annotator {

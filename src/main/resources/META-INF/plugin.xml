@@ -12,19 +12,22 @@
 <!--    <depends>com.intellij.laf.macos</depends>-->
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withClojure.xml">com.cursiveclojure.cursive</depends>
+            config-file="withClojure.xml">com.cursiveclojure.cursive</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withJS.xml">JavaScript</depends>
+            config-file="withJS.xml">JavaScript</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withJava.xml">com.intellij.java</depends>
+            config-file="withJava.xml">com.intellij.java</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withKotlin.xml">org.jetbrains.kotlin</depends>
+            config-file="withKotlin.xml">org.jetbrains.kotlin</depends>
     <depends
             optional="true"
-            config-file="com.vlanabatov.alabaster-withXML.xml">com.intellij.modules.xml</depends>
+            config-file="withScala.xml">org.intellij.scala</depends>
+    <depends
+            optional="true"
+            config-file="withXML.xml">com.intellij.modules.xml</depends>
 
     <extensions defaultExtensionNs="com.intellij">
 <!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.macos.MacLafProvider" os="mac"/>-->

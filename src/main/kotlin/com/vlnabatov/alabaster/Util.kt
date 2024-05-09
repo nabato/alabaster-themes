@@ -1,6 +1,5 @@
 package com.vlnabatov.alabaster
 
-import com.intellij.codeInspection.InspectionsBundle
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.colors.EditorColorsManager
@@ -12,7 +11,11 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
+import com.intellij.ui.Gray
+import java.awt.Color
 import java.awt.Font
+
+val transparentColor: Color = Gray.TRANSPARENT
 
 const val theme = "Alabaster"
 const val BGTheme = "$theme BG"
@@ -32,13 +35,13 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
 fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfOpeningQuotationMarks: Int = 1, numberOfClosingQuotationMarks: Int = 1) {
     // Standard annotations for non-Alabaster editor themes
     holder
-        .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
+        .newSilentAnnotation(HighlightSeverity.INFORMATION)
         .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
         .textAttributes(textAttributesKey)
         .create()
 
     holder
-        .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
+        .newSilentAnnotation(HighlightSeverity.INFORMATION)
         .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
         .textAttributes(textAttributesKey)
         .create()
@@ -46,16 +49,16 @@ fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textA
 
     if (isAlabasterTheme()) {
         val foreground = EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground
-        val background = if (isBGTheme()) EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultBackground else null
+        val background = transparentColor
         // Differently colored quotation marks for Alabaster themes
         holder
-            .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
+            .newSilentAnnotation(HighlightSeverity.INFORMATION)
             .range(TextRange(element.startOffset, element.startOffset + numberOfOpeningQuotationMarks))
             .enforcedTextAttributes(TextAttributes(foreground, background, null, null, Font.PLAIN))
             .create()
 
         holder
-            .newSilentAnnotation(HighlightSeverity.TEXT_ATTRIBUTES)
+            .newSilentAnnotation(HighlightSeverity.INFORMATION)
             .range(TextRange(element.endOffset - numberOfClosingQuotationMarks, element.endOffset))
             .enforcedTextAttributes(TextAttributes(foreground, background, null, null, Font.PLAIN))
             .create()

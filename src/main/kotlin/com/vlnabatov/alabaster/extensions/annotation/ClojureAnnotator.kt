@@ -78,7 +78,7 @@ class ClojureAnnotator : Annotator {
                             .create()
                     }
                 }
-
+                // constants
                 in ALL_LITERALS -> holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
                 // highlight keywords' special characters differently
                 KEYWORD_TOKEN -> keywordSpecialCharactersRegex.findAll(element.text).forEach { f ->
@@ -112,9 +112,7 @@ class ClojureAnnotator : Annotator {
                 in symbolPrefixPunctuationMarks ->
                     if (isBGTheme()) holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
                 // highlight quotation marks differently
-                STRING_LITERAL -> {
-                    annotateSeparationMarks(element, holder)
-                }
+                STRING_LITERAL -> annotateSeparationMarks(element, holder)
             }
         } catch (e: Exception) { /* Should not happen */ }
     }
