@@ -2,6 +2,6 @@
     <extensions defaultExtensionNs="com.intellij">
         <annotator
                 language="Scala"
-                implementationClass="com.vlnabatov.alabaster.extensions.annotation.ScalaAnnotator"/>
+                implementationClass="com.vlnabatov.alabaster.extensions.annotation.CLJScalaAnnotator"/>
     </extensions>
 </idea-plugin>

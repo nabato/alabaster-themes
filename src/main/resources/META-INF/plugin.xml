@@ -9,29 +9,39 @@
     </vendor>
 
     <depends>com.intellij.modules.platform</depends>
-<!--    <depends>com.intellij.laf.macos</depends>-->
+    <!--    <depends>com.intellij.laf.macos</depends>-->
     <depends
             optional="true"
-            config-file="withClojure.xml">com.cursiveclojure.cursive</depends>
+            config-file="withClojure.xml">com.cursiveclojure.cursive
+    </depends>
     <depends
             optional="true"
-            config-file="withJS.xml">JavaScript</depends>
+            config-file="withJS.xml">JavaScript
+    </depends>
     <depends
             optional="true"
-            config-file="withJava.xml">com.intellij.java</depends>
+            config-file="withJava.xml">com.intellij.java
+    </depends>
     <depends
             optional="true"
-            config-file="withKotlin.xml">org.jetbrains.kotlin</depends>
+            config-file="withKotlin.xml">org.jetbrains.kotlin
+    </depends>
     <depends
             optional="true"
-            config-file="withScala.xml">org.intellij.scala</depends>
+            config-file="withScala.xml">org.intellij.scala
+    </depends>
     <depends
             optional="true"
-            config-file="withXML.xml">com.intellij.modules.xml</depends>
+            config-file="withXML.xml">com.intellij.modules.xml
+    </depends>
 
     <extensions defaultExtensionNs="com.intellij">
-<!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.macos.MacLafProvider" os="mac"/>-->
-<!--        <lafProvider implementation="com.intellij.alabaster.laf.win10.WinLafProvider" os="windows"/>-->
+        <toolWindow id="Alabaster"
+                    anchor="right"
+                    icon="AlabasterIcons.ToolWindow"
+                    factoryClass="com.vlnabatov.alabaster.Factory"/>
+        <!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.macos.MacLafProvider" os="mac"/>-->
+        <!--        <lafProvider implementation="com.intellij.alabaster.laf.win10.WinLafProvider" os="windows"/>-->
         <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>
         <themeProvider id="com.vlnabatov.alabaster-bg" path="/META-INF/alabaster-bg.theme.json"/>
         <themeProvider id="com.vlnabatov.alabaster-dark" path="/META-INF/alabaster-dark.theme.json"/>

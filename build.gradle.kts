@@ -1,21 +1,24 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 
 fun properties(key: String) = project.findProperty(key).toString()
 fun environment(key: String) = providers.environmentVariable(key).toString()
 
 plugins {
-    // Java support
     id("java")
-    // Kotlin support
+
     kotlin("jvm") version "1.9.10"
-    // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.16.0"
-    // Gradle Changelog Plugin
+
+    id("dev.clojurephant.clojure") version "0.8.0-beta.7"
+
+    id("org.jetbrains.intellij") version "1.17.3"
+
     id("org.jetbrains.changelog") version "2.0.0"
-    // Gradle Qodana Plugin
+
     id("org.jetbrains.qodana") version "0.1.13"
-    // Gradle Kover Plugin
+
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
 }
 
@@ -25,7 +28,25 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
+    maven {
+        name = "Clojars"
+        url = uri("https://repo.clojars.org")
+    }
 }
+
+
+dependencies {
+    implementation(kotlin("stdlib-jdk8"))
+
+    implementation("org.clojure:clojure:1.12.0-alpha11")
+    implementation("http-kit:http-kit:2.5.3")
+}
+
+
+// Useful to override another IC platforms from env
+val platformVersion = System.getenv("PLATFORM_VERSION") ?: properties("platformVersion")
+val platformPlugins = System.getenv("PLATFORM_PLUGINS") ?: properties("platformPlugins")
+
 
 // Set the JVM language level used to build a project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
 kotlin {
@@ -35,17 +56,17 @@ kotlin {
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
+    version.set(platformVersion)
     type.set(properties("platformType"))
 
     // Plugin Dependencies. Use `platformPlugins` property from the gradle.properties file.
-    plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+    plugins.set(platformPlugins.split(',').map(String::trim).filter(String::isNotEmpty))
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
+    version.set(properties("pluginVersion"))
     groups.set(emptyList())
-    repositoryUrl.set(properties("pluginRepositoryUrl"))
 }
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
@@ -61,9 +82,29 @@ kover.xmlReport {
     onCheck.set(true)
 }
 
+tasks.withType(KotlinCompile::class).all {
+    kotlinOptions {
+        jvmTarget = "17"
+        // For creation of default methods in interfaces
+        freeCompilerArgs = listOf("-Xjvm-default=all")
+    }
+}
+
+tasks.register("saveClassPathToFile") {
+    doFirst {
+        File("classpath.txt").writeText(sourceSets["main"].runtimeClasspath.asPath)
+    }
+}
+
 tasks {
-    buildSearchableOptions {
-        enabled = false
+    checkClojure {
+        doNotTrackState("dirty workaround")
+        dependsOn(compileKotlin)
+    }
+
+    compileClojure {
+        doNotTrackState("dirty workaround")
+        dependsOn(compileKotlin)
     }
 
     wrapper {
@@ -99,8 +140,6 @@ tasks {
         })
     }
 
-    // Configure UI tests plugin
-    // Read more: https://github.com/JetBrains/intellij-ui-test-robot
     runIdeForUiTests {
         systemProperty("robot-server.port", "8082")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
@@ -109,30 +148,23 @@ tasks {
     }
 
     signPlugin {
-//        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-//        privateKey.set(System.getenv("PRIVATE_KEY"))
-//        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
         certificateChain = environment("CERTIFICATE_CHAIN")
         privateKey = environment("PRIVATE_KEY")
         password = environment("PRIVATE_KEY_PASSWORD")
-//        val cc = project.property("CERTIFICATE_CHAIN") as String
-//        val pk = project.property("PRIVATE_KEY") as String
-//        val pkp = project.property("PRIVATE_KEY_PASSWORD") as String
-//        certificateChain.set(File(cc).readText())
-//        privateKey.set(File(pk).readText())
-//        password.set(pkp)
     }
 
     publishPlugin {
-//        token.set(providers.environmentVariable("PRIVATE_KEY_PASSWORD"))
         dependsOn("patchChangelog")
         token = environment("PUBLISH_TOKEN")
-        // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
-        // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
-        // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+    }
+
+    buildSearchableOptions {
+        enabled = false
     }
 }
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+
+clojure.builds.named("main") {
+    aotAll()
+    checkAll()
+    reflection.set("fail")
 }

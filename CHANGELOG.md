@@ -27,7 +27,8 @@
 
 ## [1.0.58]
 - The dark theme is darker
-- [1.0.57]
+
+## [1.0.57]
 - White color text for the dark theme
 
 ## [1.0.56]

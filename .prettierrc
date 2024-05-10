@@ -1,0 +1,6 @@
+{
+  "arrowParens": "avoid",
+  "experimentalTernaries": true,
+  "semi": false,
+  "trailingComma": "none"
+}
