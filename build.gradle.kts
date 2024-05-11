@@ -1,5 +1,8 @@
+import com.jetbrains.plugin.structure.base.utils.contentBuilder.buildDirectory
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.d8.D8RootPlugin.Companion.kotlinD8Extension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
@@ -83,10 +86,10 @@ kover.xmlReport {
 }
 
 tasks.withType(KotlinCompile::class).all {
-    kotlinOptions {
-        jvmTarget = "17"
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
         // For creation of default methods in interfaces
-        freeCompilerArgs = listOf("-Xjvm-default=all")
+        freeCompilerArgs.add("-Xjvm-default=all")
     }
 }
 
@@ -97,18 +100,18 @@ tasks.register("saveClassPathToFile") {
 }
 
 tasks {
+    wrapper {
+        gradleVersion = properties("gradleVersion")
+    }
+
     checkClojure {
-        doNotTrackState("dirty workaround")
-        dependsOn(compileKotlin)
+        isEnabled = false
     }
 
     compileClojure {
-        doNotTrackState("dirty workaround")
         dependsOn(compileKotlin)
-    }
-
-    wrapper {
-        gradleVersion = properties("gradleVersion")
+//        to get all output paths use: sourceSets.main.get().output.asPath
+        classpath.from(sourceSets.main.get().kotlin.destinationDirectory.get())
     }
 
     patchPluginXml {

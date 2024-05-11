@@ -18,7 +18,7 @@
   (:gen-class :main false
               :extends com.vlnabatov.alabaster.WithLoader
               :implements
-                [com.intellij.ide.ui.UISettingsListener
+              [com.intellij.ide.ui.UISettingsListener
                  com.intellij.openapi.editor.colors.EditorColorsListener
                  com.intellij.openapi.wm.ToolWindowFactory
                  com.intellij.openapi.project.DumbAware]
