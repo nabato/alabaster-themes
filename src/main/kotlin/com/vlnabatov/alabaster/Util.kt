@@ -27,7 +27,7 @@ fun isDarkTheme() = EditorColorsManager.getInstance().schemeForCurrentUITheme.na
 
 fun isAlabasterTheme() = isDefaultTheme() || isBGTheme() || isDarkTheme()
 
-
+@JvmOverloads
 fun annotateSeparationMarks(element: PsiElement, holder: AnnotationHolder, textAttributesKey: TextAttributesKey = BRACES, numberOfQuotationMarks: Int = 1) {
     annotateSeparationMarks(element, holder, textAttributesKey, numberOfQuotationMarks, numberOfQuotationMarks)
 }

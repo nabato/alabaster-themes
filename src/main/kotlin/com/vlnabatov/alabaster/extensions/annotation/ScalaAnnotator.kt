@@ -13,18 +13,3 @@ import com.vlnabatov.alabaster.annotateSeparationMarks
 private val valTokens = setOf(*BOOLEAN_TOKEN_SET.types, *NUMBER_TOKEN_SET.types, kNULL)
 
 
-// Search in org.jetbrains.plugins.scala.lang.lexer.ScalaTokenTypes
-class ScalaAnnotator : Annotator {
-    override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        try {
-            when (element.elementType) {
-                // constants
-                in valTokens -> holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
-                // strings
-                in STRING_LITERAL_TOKEN_SET -> annotateSeparationMarks(element, holder, BRACES)
-            }
-        } catch (e: Exception) {
-            /* Should not happen */
-        }
-    }
-}
