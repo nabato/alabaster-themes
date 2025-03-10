@@ -1,6 +1,5 @@
 package com.vlnabatov.alabaster.extensions.annotation
 
-import com.vlnabatov.alabaster.annotateSeparationMarks
 import clojure.lang.Keyword
 import clojure.lang.PersistentHashMap
 import com.intellij.lang.annotation.AnnotationHolder
@@ -16,13 +15,20 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.ui.JBColor
+import com.vlnabatov.alabaster.annotateSeparationMarks
+import com.vlnabatov.alabaster.isBGTheme
 import cursive.lexer.ClojureTokenTypes
 import cursive.lexer.ClojureTokenTypes.*
+import cursive.lexer.ClojureTokenTypes.DEREF
+import cursive.lexer.ClojureTokenTypes.NAMESPACED_MAP
+import cursive.lexer.ClojureTokenTypes.SHARP
 import cursive.psi.ClojurePsiElement
-import cursive.psi.ClojurePsiElement.*
+import cursive.psi.ClojurePsiElement.KEYWORD
+import cursive.psi.ClojurePsiElement.LIST
+import cursive.psi.ClojurePsiElement.SYMBOL
+import cursive.psi.ClojurePsiElement.VECTOR
 import cursive.psi.api.ClListLike
 import cursive.psi.impl.synthetic.SyntheticSymbol
-import com.vlnabatov.alabaster.isBGTheme
 import java.awt.Font
 
 
@@ -42,7 +48,10 @@ val methodsKeywordRegex = Regex("\\B:methods\\b")
 val keywordSpecialCharactersRegex = Regex(":_/|[:/.]")
 
 // Technically BACKQUOTE is a form prefix punctuation mark, but we'll treat it as symbol prefix one to make it pleasing
-val symbolPrefixPunctuationMarks = setOf(AT, BACKQUOTE, TILDA, TILDAAT, QUOTE)
+val symbolPrefixPunctuationMarks = setOf(
+    DEREF, ClojureTokenTypes.SYNTAX_QUOTE, ClojureTokenTypes.UNQUOTE,
+    ClojureTokenTypes.UNQUOTE_SPLICING, QUOTE
+)
 
 // Technically UP is a symbol prefix punctuation mark, but we'll treat it as form prefix one to make it pleasing
 val formPrefixPunctuationMarks = setOf(
@@ -52,16 +61,18 @@ val formPrefixPunctuationMarks = setOf(
     RIGHT_CURLY,
     RIGHT_PAREN,
     RIGHT_SQUARE,
-    ClojureTokenTypes.SHARP,
-    SHARP_COLON,
-    SHARP_CURLY,
-    SHARP_DOUBLE_COLON,
-    SHARP_QUESTION,
-    SHARP_QUESTION_AT,
-    SHARP_QUOTE,
-    SHARPUP,
-    UP
+    SHARP,
+    NAMESPACED_MAP,
+    SET_BRACE,
+    AUTO_RESOLVED_MAP,
+    CONDITIONAL,
+    CONDITIONAL_LIST,
+    VAR,
+    META_OLD,
+    META
 )
+
+//val SEPARATORS = TokenSet.create(*arrayOf<IElementType>(NS_SEP))
 
 class ClojureAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
@@ -85,12 +96,20 @@ class ClojureAnnotator : Annotator {
                     holder
                         .newSilentAnnotation(TEXT_ATTRIBUTES)
                         .range(TextRange.from(element.textOffset + f.range.first, f.value.length))
-                        .enforcedTextAttributes(TextAttributes(EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground, null, null, null, Font.PLAIN))
+                        .enforcedTextAttributes(
+                            TextAttributes(
+                                EditorColorsManager.getInstance().schemeForCurrentUITheme.defaultForeground,
+                                null,
+                                null,
+                                null,
+                                Font.PLAIN
+                            )
+                        )
                         .create()
                 }
 
                 SYMBOL_TOKEN -> {
-                    if ((element.parent.parent as ClojurePsiElement).type === NAMESPACED_MAP) {
+                    if ((element.parent.parent as ClojurePsiElement).type === ClojurePsiElement.NAMESPACED_MAP) {
                         holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(MARKUP_ENTITY).create()
                     }
 
@@ -106,7 +125,7 @@ class ClojureAnnotator : Annotator {
                     }
                 }
                 // highlight decorators for metadata, namespaced map, regex differently
-                in SEPARATORS, in formPrefixPunctuationMarks ->
+                in setOf(NS_SEP), in formPrefixPunctuationMarks ->
                     holder.newSilentAnnotation(TEXT_ATTRIBUTES).textAttributes(BRACES).create()
 
                 in symbolPrefixPunctuationMarks ->
@@ -114,7 +133,8 @@ class ClojureAnnotator : Annotator {
                 // highlight quotation marks differently
                 STRING_LITERAL -> annotateSeparationMarks(element, holder)
             }
-        } catch (e: Exception) { /* Should not happen */ }
+        } catch (e: Exception) { /* Should not happen */
+        }
     }
 
     private fun isMacroCall(element: ClojurePsiElement): Boolean =

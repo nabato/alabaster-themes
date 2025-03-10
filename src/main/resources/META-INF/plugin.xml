@@ -4,7 +4,7 @@
     <name>Alabaster Themes</name>
     <category>Themes</category>
     <vendor url="https://github.com/nabato"
-            email="nabatov.vladislav@gmail.com">
+            email="vlad@naba.to">
         Vladislav Nabatov
     </vendor>
 
@@ -37,9 +37,9 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!--                    icon="AlabasterIcons.ToolWindow"-->
-        <toolWindow id="Alabaster"
-                    anchor="right"
-                    factoryClass="com.vlnabatov.alabaster.Factory"/>
+<!--        <toolWindow id="Alabaster"-->
+<!--                    anchor="right"-->
+<!--                    factoryClass="com.vlnabatov.alabaster.Factory"/>-->
         <!--        <lafProvider implementation="com.vlnabatov.alabaster.laf.macos.MacLafProvider" os="mac"/>-->
         <!--        <lafProvider implementation="com.intellij.alabaster.laf.win10.WinLafProvider" os="windows"/>-->
         <themeProvider id="com.vlnabatov.alabaster" path="/META-INF/alabaster.theme.json"/>

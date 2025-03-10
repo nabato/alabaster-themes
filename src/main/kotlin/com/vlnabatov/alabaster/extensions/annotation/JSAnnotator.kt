@@ -4,6 +4,15 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity.INFORMATION
 import com.intellij.lang.ecmascript6.ES6StubElementTypes.*
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.ASSIGNMENT_EXPRESSION
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.DEFINITION_EXPRESSION
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.DESTRUCTURING_ELEMENT
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.DESTRUCTURING_PROPERTY
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.DESTRUCTURING_SHORTHANDED_PROPERTY
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.NEW_EXPRESSION
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.PROPERTY
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.STRING_TEMPLATE_EXPRESSION
+import com.intellij.lang.javascript.BasicJavaScriptStubElementTypes.VAR_STATEMENT
 import com.intellij.lang.javascript.JSElementTypes.*
 import com.intellij.lang.javascript.JSTokenTypes.*
 import com.intellij.lang.javascript.psi.impl.JSReferenceExpressionImpl
