@@ -9,8 +9,8 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.STRING
 import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+import com.intellij.psi.util.startOffset
+import com.intellij.psi.util.endOffset
 import com.intellij.ui.Gray
 import java.awt.Color
 import java.awt.Font
