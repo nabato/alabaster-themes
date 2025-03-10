@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.91]
+- Update theme to Light with Light Header and Dark UIs defaults.
+
 ## [1.0.90]
 - Fixed broken Clojure support after Cursive's upgrade.
 
