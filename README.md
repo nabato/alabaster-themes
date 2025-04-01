@@ -11,7 +11,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- Plugin description -->
-Tired of motley themses that use dozens of colors? This theme is for you. 
+Tired of motley editor themes that have more colors than a chameleon? This theme is for you. 
 <!-- Plugin description end -->
 
 ## Installation
