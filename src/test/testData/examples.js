@@ -5,6 +5,8 @@ const Prism = require('prismjs')
 import Myname from 'wtf'
 import {members, too} from 'ts'
 
+const abb = true
+
 function hello() {
     //     ^highlighted
     function hello05() {}

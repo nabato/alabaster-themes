@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [1.0.92]
+- Go support
+
 ## [1.0.91]
 - Update theme to Light with Light Header and Dark UIs defaults.
 

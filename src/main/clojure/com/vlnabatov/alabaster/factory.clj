@@ -1,8 +1,6 @@
 (ns com.vlnabatov.alabaster.factory
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
-            [org.httpkit.server :as http]
-            [com.vlnabatov.alabaster.file :as file]
             [com.vlnabatov.alabaster.theme :as theme])
   (:import (com.intellij.openapi.diagnostic Logger)
            (com.intellij.openapi.project Project)
@@ -16,7 +14,7 @@
            (org.cef.handler CefLoadHandler)
            (com.vlnabatov.alabaster WithLoader))
   (:gen-class :main false
-              :extends com.vlnabatov.alabaster.WithLoader
+              :extends com.vlnabatov.alabaster.extensions.WithLoader
               :implements
               [com.intellij.ide.ui.UISettingsListener
                  com.intellij.openapi.editor.colors.EditorColorsListener

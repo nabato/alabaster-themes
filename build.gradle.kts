@@ -2,27 +2,30 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 
 plugins {
-    id("java")
+  id("java")
 
-    kotlin("jvm") version "2.0.0-RC3"
+  kotlin("jvm") version "2.1.20"
 
 //    id("dev.clojurephant.clojure") version "0.8.0-beta.7"
 
-    id("org.jetbrains.intellij.platform") version "2.3.0"
+  id("org.jetbrains.intellij.platform") version "2.5.0"
 
-    id("org.jetbrains.changelog") version "2.2.1"
+  id("org.jetbrains.changelog") version "2.2.1"
 
-    id("org.jetbrains.qodana") version "2024.3.4"
+  id("org.jetbrains.qodana") version "2024.3.4"
 
-    id("org.jetbrains.kotlinx.kover") version "0.9.1"
+  id("org.jetbrains.kotlinx.kover") version "0.9.1"
 }
 
 kotlin {
-    jvmToolchain(21)
+  jvmToolchain(21)
+
+  compilerOptions {
+    freeCompilerArgs.add("-Xwhen-guards")
+  }
 }
 
 group = providers.gradleProperty("pluginGroup").get()
@@ -30,92 +33,97 @@ version = providers.gradleProperty("pluginVersion").get()
 
 // Configure project's dependencies
 repositories {
-    mavenCentral()
-    maven {
-        name = "Clojars"
-        url = uri("https://repo.clojars.org")
-    }
-    intellijPlatform {
-        defaultRepositories()
-    }
+  mavenCentral()
+  maven {
+    name = "Clojars"
+    url = uri("https://repo.clojars.org")
+  }
+  intellijPlatform {
+    defaultRepositories()
+  }
 }
 
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-//    implementation("org.clojure:clojure:1.12.0-alpha11")
-//    implementation("http-kit:http-kit:2.5.3")
-    intellijPlatform {
-        create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
+  implementation(kotlin("stdlib-jdk8"))
+  implementation("org.clojure:clojure:1.12.0")
 
-        plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
-        bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
-        pluginVerifier()
-        zipSigner()
-    }
+  intellijPlatform {
+    intellijIdeaUltimate("2024.3.5")
+    bundledPlugins("org.jetbrains.kotlin", "com.intellij.java", "JavaScript")
+    plugins(
+      "com.cursiveclojure.cursive:1.14.0-2024.3",
+      "org.intellij.scala:2024.3.42",
+      "org.jetbrains.plugins.go:243.26053.27",
+      "PsiViewer:243.7768"
+    )
+    pluginVerifier()
+    zipSigner()
+  }
 }
 
 intellijPlatform {
-    pluginConfiguration {
-        version = providers.gradleProperty("pluginVersion")
+  pluginConfiguration {
+    version
 
-        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        description = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
-            val start = "<!-- Plugin description -->"
-            val end = "<!-- Plugin description end -->"
+    // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+    description = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+      val start = "<!-- Plugin description -->"
+      val end = "<!-- Plugin description end -->"
 
-            with(it.lines()) {
-                if (!containsAll(listOf(start, end))) {
-                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
-                }
-                subList(indexOf(start) + 1, indexOf(end)).joinToString("\n").let(::markdownToHTML)
-            }
+      with(it.lines()) {
+        if (!containsAll(listOf(start, end))) {
+          throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
         }
-
-        val changelog = project.changelog // local variable for configuration cache compatibility
-        // Get the latest available change notes from the changelog file
-        changeNotes = providers.gradleProperty("pluginVersion").map { pluginVersion ->
-            with(changelog) {
-                renderItem(
-                    (getOrNull(pluginVersion) ?: getUnreleased())
-                        .withHeader(false)
-                        .withEmptySections(false),
-                    Changelog.OutputType.HTML,
-                )
-            }
-        }
-
-        ideaVersion {
-            sinceBuild = providers.gradleProperty("pluginSinceBuild")
-            untilBuild = providers.gradleProperty("pluginUntilBuild")
-        }
+        subList(indexOf(start) + 1, indexOf(end)).joinToString("\n").let(::markdownToHTML)
+      }
     }
 
-    signing {
-        certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
-        privateKey = providers.environmentVariable("PRIVATE_KEY")
-        password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
+    val changelog = project.changelog // local variable for configuration cache compatibility
+    // Get the latest available change notes from the changelog file
+    changeNotes = providers.gradleProperty("pluginVersion").map { pluginVersion ->
+      with(changelog) {
+        renderItem(
+          (getOrNull(pluginVersion) ?: getUnreleased())
+            .withHeader(false)
+            .withEmptySections(false),
+          Changelog.OutputType.HTML,
+        )
+      }
     }
 
-    publishing {
-        token = providers.environmentVariable("PUBLISH_TOKEN")
-        // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
-        // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
-        // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels = providers.gradleProperty("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+    ideaVersion {
+      sinceBuild = providers.gradleProperty("pluginSinceBuild").get()
+      untilBuild = providers.gradleProperty("pluginUntilBuild").get()
     }
+  }
 
-    pluginVerification {
-        ides {
-            recommended()
-        }
+  signing {
+    certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
+    privateKey = providers.environmentVariable("PRIVATE_KEY")
+    password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
+  }
+
+  publishing {
+    token = providers.environmentVariable("PUBLISH_TOKEN")
+    // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
+    // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
+    // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
+    channels = providers.gradleProperty("pluginVersion")
+      .map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+  }
+
+  pluginVerification {
+    ides {
+      recommended()
     }
+  }
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-    groups.empty()
-    repositoryUrl = providers.gradleProperty("pluginRepositoryUrl")
+  groups.empty()
+  repositoryUrl = providers.gradleProperty("pluginRepositoryUrl")
 }
 
 //kover {
@@ -137,23 +145,23 @@ changelog {
 //}
 
 tasks.withType(KotlinCompile::class).all {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_21)
-        // For creation of default methods in interfaces
-        freeCompilerArgs.add("-Xjvm-default=all")
-    }
+  compilerOptions {
+    jvmTarget.set(JvmTarget.JVM_21)
+    // For creation of default methods in interfaces
+    freeCompilerArgs.add("-Xjvm-default=all")
+  }
 }
 
 tasks.register("saveClassPathToFile") {
-    doFirst {
-        File("classpath.txt").writeText(sourceSets["main"].runtimeClasspath.asPath)
-    }
+  doFirst {
+    File("classpath.txt").writeText(sourceSets["main"].runtimeClasspath.asPath)
+  }
 }
 
 tasks {
-    wrapper {
-        gradleVersion = providers.gradleProperty("gradleVersion").get()
-    }
+  wrapper {
+    gradleVersion = providers.gradleProperty("gradleVersion").get()
+  }
 
 //    checkClojure {
 //        isEnabled = false
@@ -165,38 +173,38 @@ tasks {
 //        classpath.from(sourceSets.main.get().kotlin.destinationDirectory.get())
 //    }
 
-    publishPlugin {
-        dependsOn(patchChangelog)
-    }
+  publishPlugin {
+    dependsOn(patchChangelog)
+  }
 
-    buildSearchableOptions {
-        enabled = false
-    }
+  buildSearchableOptions {
+    enabled = false
+  }
 }
 
 //clojure.builds.named("main") {
-////    aotAll()
-////    checkAll()
-////    reflection.set("fail")
-////}
+//    aotAll()
+//    checkAll()
+//    reflection.set("fail")
+//}
 
 intellijPlatformTesting {
-    runIde {
-        register("runIdeForUiTests") {
-            task {
-                jvmArgumentProviders += CommandLineArgumentProvider {
-                    listOf(
-                        "-Drobot-server.port=8082",
-                        "-Dide.mac.message.dialogs.as.sheets=false",
-                        "-Djb.privacy.policy.text=<!--999.999-->",
-                        "-Djb.consents.confirmation.enabled=false",
-                    )
-                }
-            }
-
-            plugins {
-                robotServerPlugin()
-            }
+  runIde {
+    register("runIdeForUiTests") {
+      task {
+        jvmArgumentProviders += CommandLineArgumentProvider {
+          listOf(
+            "-Drobot-server.port=8082",
+            "-Dide.mac.message.dialogs.as.sheets=false",
+            "-Djb.privacy.policy.text=<!--999.999-->",
+            "-Djb.consents.confirmation.enabled=false",
+          )
         }
+      }
+
+      plugins {
+        robotServerPlugin()
+      }
     }
+  }
 }

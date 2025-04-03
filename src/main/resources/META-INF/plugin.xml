@@ -16,6 +16,10 @@
     </depends>
     <depends
             optional="true"
+            config-file="withGo.xml">org.jetbrains.plugins.go
+    </depends>
+    <depends
+            optional="true"
             config-file="withJS.xml">JavaScript
     </depends>
     <depends

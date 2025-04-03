@@ -17,9 +17,9 @@ import com.intellij.lang.javascript.JSElementTypes.*
 import com.intellij.lang.javascript.JSTokenTypes.*
 import com.intellij.lang.javascript.psi.impl.JSReferenceExpressionImpl
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.FUNCTION_DECLARATION
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.MARKUP_ENTITY
-import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors.NUMBER
 import com.intellij.psi.PsiElement
+import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.util.elementType
 import com.vlnabatov.alabaster.annotateSeparationMarks
 
@@ -30,112 +30,97 @@ val symbolTypes = setOf(TRUE_KEYWORD, FALSE_KEYWORD, NULL_KEYWORD, UNDEFINED_KEY
 val stringTypes = setOf(STRING_LITERAL, SINGLE_QUOTE_STRING_LITERAL)
 
 val symbolRegex =
-    Regex(
-        "\\bInfinity|NaN|POSITIVE_INFINITY|NEGATIVE_INFINITY|MAX_VALUE|MIN_VALUE|EPSILON|MAX_SAFE_INTEGER|MIN_SAFE_INTEGER|E|LN2|LN10|LOG2E|LOG10E|PI|SQRT1_2|SQRT2|\\b"
-    )
+  Regex(
+    "\\bInfinity|NaN|POSITIVE_INFINITY|NEGATIVE_INFINITY|MAX_VALUE|MIN_VALUE|EPSILON|MAX_SAFE_INTEGER|MIN_SAFE_INTEGER|E|LN2|LN10|LOG2E|LOG10E|PI|SQRT1_2|SQRT2|\\b"
+  )
 
 val mathObjectRegex = Regex("\\bMath|Number\\b")
 
 val assignmentExpressionTypes =
-    setOf(
-        ASSIGNMENT_EXPRESSION,
-        *BODY_VARIABLES.types,
-        *ES6_CLASS_FIELDS.types,
-        PROPERTY,
-        FIELD,
-        FIELD_STATEMENT,
-        VAR_STATEMENT
-    )
+  setOf(
+    ASSIGNMENT_EXPRESSION,
+    *BODY_VARIABLES.types,
+    *ES6_CLASS_FIELDS.types,
+    PROPERTY,
+    FIELD,
+    FIELD_STATEMENT,
+    VAR_STATEMENT
+  )
 
 val functionExpressionTypes =
-    setOf(
-        *FUNCTION_DECLARATIONS.types,
-        *FUNCTION_EXPRESSIONS.types,
-        *FUNCTION_PROPERTIES.types,
-        *CLASS_EXPRESSIONS.types,
-    )
-
-val classTypes = setOf(
-    CLASS,
+  setOf(
+    *FUNCTION_DECLARATIONS.types,
+    *FUNCTION_EXPRESSIONS.types,
+    *FUNCTION_PROPERTIES.types,
     *CLASS_EXPRESSIONS.types,
-)
+  )
+
+val classTypes = setOf(CLASS, *CLASS_EXPRESSIONS.types)
+
 
 val functionConstructorRegex =
-    Regex("\\bFunction|AsyncFunction|GeneratorFunction|AsyncGeneratorFunction\\b")
+  Regex("\\bFunction|AsyncFunction|GeneratorFunction|AsyncGeneratorFunction\\b")
 
 class JSAnnotator : Annotator {
-    override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        try {
-            if (element is LeafPsiElement) {
-                if (isSymbolIdentifier(element)) {
-                    holder.newSilentAnnotation(INFORMATION).textAttributes(MARKUP_ENTITY).create()
-                } else if (element.elementType in identifierTypes) {
-                    if (isFunctionDefinition(element) || isClassDefinition(element)) {
-                        holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
-                    }
-                    // strings
-                } else if (element.elementType in stringTypes ||
-                    (element.elementType === BACKQUOTE &&
-                            element.parent.elementType === STRING_TEMPLATE_EXPRESSION &&
-                            (element === element.parent.firstChild || element === element.parent.lastChild))
-                ) {
-                    annotateSeparationMarks(element, holder)
-                }
-            }
-        } catch (e: Exception) {
-            /* Should not happen */
-        }
+  override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+    if (element !is LeafPsiElement) return
+
+    try {
+      when {
+        isSymbolIdentifier(element) ->
+          holder.newSilentAnnotation(INFORMATION).textAttributes(NUMBER).create()
+
+        element.elementType in identifierTypes &&
+            (isFunctionDefinition(element) || element.parent.elementType in classTypes) ->
+          holder.newSilentAnnotation(INFORMATION).textAttributes(FUNCTION_DECLARATION).create()
+
+        element.elementType in stringTypes ||
+            (element.elementType === BACKQUOTE &&
+                element.parent.elementType === STRING_TEMPLATE_EXPRESSION &&
+                (element === element.parent.firstChild || element === element.parent.lastChild)) ->
+          annotateSeparationMarks(element, holder)
+      }
+    } catch (e: Exception) {
+      /* Should not happen */
     }
+  }
 
-    // Imprecise detection given current PSI info
-    private fun isSymbolIdentifier(element: PsiElement): Boolean {
-        if (element.elementType in symbolTypes) {
-            return true
-        }
+  // Imprecise detection given current PSI info
+  fun isSymbolIdentifier(element: PsiElement): Boolean = when {
+    element.elementType in symbolTypes -> true
 
-        if (element.text.matches(symbolRegex) &&
-            element.parent.elementType == REFERENCE_EXPRESSION &&
-            (element.parent as JSReferenceExpressionImpl).referencedName!!.matches(symbolRegex)
-        ) {
-            return true
-        }
+    element.text.matches(symbolRegex) &&
+        element.parent.elementType == REFERENCE_EXPRESSION &&
+        (element.parent as JSReferenceExpressionImpl).referencedName!!.matches(symbolRegex) -> true
 
-        if (element.text.matches(symbolRegex) &&
-            element.parent.elementType == DESTRUCTURING_PROPERTY &&
-            element.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
-            element.parent.parent.parent.children[1].text.matches(mathObjectRegex)
-        ) {
-            return true
-        }
+    element.text.matches(symbolRegex) &&
+        element.parent.elementType == DESTRUCTURING_PROPERTY &&
+        element.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
+        element.parent.parent.parent.children[1].text.matches(mathObjectRegex) -> true
 
-        return element.text.matches(symbolRegex) &&
-                element.parent.parent.elementType == DESTRUCTURING_SHORTHANDED_PROPERTY &&
-                element.parent.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
-                element.parent.parent.parent.parent.children[1].text.matches(mathObjectRegex)
-    }
+    else -> element.text.matches(symbolRegex) &&
+        element.parent.parent.elementType == DESTRUCTURING_SHORTHANDED_PROPERTY &&
+        element.parent.parent.parent.parent.elementType == DESTRUCTURING_ELEMENT &&
+        element.parent.parent.parent.parent.children[1].text.matches(mathObjectRegex)
+  }
 
-    private fun isFunctionDefinition(element: PsiElement): Boolean {
-        if (element.parent.elementType in functionExpressionTypes) {
-            return true
-        }
 
-        if (element.parent.elementType in assignmentExpressionTypes &&
-            element.parent.firstChild === element &&
-            isFunctionExpression(element.parent.lastChild)
-        ) {
-            return true
-        }
+  private fun isFunctionExpression(element: PsiElement) =
+    element.elementType in functionExpressionTypes ||
+        (element.elementType == NEW_EXPRESSION &&
+            element.children[0].text.matches(functionConstructorRegex))
 
-        return element.parent.elementType == REFERENCE_EXPRESSION &&
-                element.parent.parent.elementType == DEFINITION_EXPRESSION &&
-                element.parent.parent.parent.elementType == ASSIGNMENT_EXPRESSION &&
-                isFunctionExpression(element.parent.parent.parent.children[1])
-    }
 
-    private fun isClassDefinition(element: LeafPsiElement) = element.parent.elementType in classTypes
+  fun isFunctionDefinition(element: PsiElement): Boolean = when {
+    element.parent.elementType in functionExpressionTypes -> true
 
-    private fun isFunctionExpression(element: PsiElement) =
-        element.elementType in functionExpressionTypes ||
-                (element.elementType == NEW_EXPRESSION &&
-                        element.children[0].text.matches(functionConstructorRegex))
+    element.parent.elementType in assignmentExpressionTypes &&
+        element.parent.firstChild === element &&
+        isFunctionExpression(element.parent.lastChild) -> true
+
+    else -> element.parent.elementType == REFERENCE_EXPRESSION &&
+        element.parent.parent.elementType == DEFINITION_EXPRESSION &&
+        element.parent.parent.parent.elementType == ASSIGNMENT_EXPRESSION &&
+        isFunctionExpression(element.parent.parent.parent.children[1])
+  }
 }
