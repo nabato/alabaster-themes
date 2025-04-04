@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator
+                language="go"
+                implementationClass="com.vlnabatov.alabaster.extensions.annotation.GoAnnotator"/>
+    </extensions>
+</idea-plugin>

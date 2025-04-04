@@ -1,8 +1,7 @@
 <scheme name="Alabaster BG" version="142" parent_scheme="Default">
     <metaInfo>
-        <property name="created">2024-04-30T13:36:58</property>
         <property name="ide">idea</property>
-        <property name="ideVersion">2023.3.0.0</property>
+        <property name="ideVersion">2024.3.5.0.0</property>
     </metaInfo>
     <colors>
         <option name="CARET_COLOR" value="7acc" />
@@ -39,6 +38,9 @@
             </value>
         </option>
         <option name="CONSTRUCTOR_CALL_ATTRIBUTES">
+            <value />
+        </option>
+        <option name="CONSTRUCTOR_DECLARATION_ATTRIBUTES">
             <value />
         </option>
         <option name="CSS.PROPERTY_VALUE">
@@ -462,17 +464,10 @@
                 <option name="EFFECT_TYPE" value="2" />
             </value>
         </option>
-        <option name="GO_LOCAL_CONSTANT">
-            <value />
-        </option>
-        <option name="GO_PACKAGE_EXPORTED_CONSTANT">
-            <value />
-        </option>
-        <option name="GO_PACKAGE_LOCAL_CONSTANT">
-            <value />
-        </option>
         <option name="GO_BUILTIN_CONSTANT">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="7a3e9d" />
+            </value>
         </option>
         <option name="GO_BUILTIN_FUNCTION">
             <value />
@@ -489,6 +484,9 @@
         <option name="GO_EXPORTED_FUNCTION_CALL">
             <value />
         </option>
+        <option name="GO_LOCAL_CONSTANT">
+            <value />
+        </option>
         <option name="GO_LOCAL_FUNCTION_CALL">
             <value />
         </option>
@@ -496,6 +494,12 @@
             <value />
         </option>
         <option name="GO_PACKAGE">
+            <value />
+        </option>
+        <option name="GO_PACKAGE_EXPORTED_CONSTANT">
+            <value />
+        </option>
+        <option name="GO_PACKAGE_LOCAL_CONSTANT">
             <value />
         </option>
         <option name="GO_SHADOWING_VARIABLE">

@@ -1,7 +1,7 @@
 <scheme name="Alabaster" version="142" parent_scheme="Default">
   <metaInfo>
     <property name="ide">idea</property>
-    <property name="ideVersion">2024.1.0.0</property>
+    <property name="ideVersion">2024.3.5.0.0</property>
   </metaInfo>
   <colors>
     <option name="CARET_COLOR" value="7acc" />
@@ -15,6 +15,9 @@
   </colors>
   <attributes>
     <option name="ANNOTATION_NAME_ATTRIBUTES" baseAttributes="DEFAULT_METADATA" />
+    <option name="CONSTRUCTOR_DECLARATION_ATTRIBUTES">
+      <value />
+    </option>
     <option name="CSS.COLOR">
       <value />
     </option>
@@ -36,27 +39,19 @@
       <value />
     </option>
     <option name="CSS.UNICODE.RANGE">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="CSS.URL">
       <value />
     </option>
     <option name="Clojure Keyword">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="Clojure Literal">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="Clojure Numbers">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="DEFAULT_ATTRIBUTE">
       <value />
@@ -116,9 +111,7 @@
       </value>
     </option>
     <option name="DEFAULT_ENTITY">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="DEFAULT_FUNCTION_DECLARATION">
       <value>
@@ -136,7 +129,7 @@
     </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
+        <option name="FOREGROUND" value="7a3e9d" />
         <option name="EFFECT_COLOR" value="ff0000" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
@@ -196,7 +189,7 @@
     </option>
     <option name="DEFAULT_VALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
+        <option name="FOREGROUND" value="7a3e9d" />
       </value>
     </option>
     <option name="ERRORS_ATTRIBUTES">
@@ -207,46 +200,14 @@
         <option name="ERROR_STRIPE_COLOR" value="cf5b56" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
-      <option name="GO_BUILTIN_CONSTANT">
-        <value>
-          <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-        </value>
-      </option>
-      <option name="GO_BUILTIN_FUNCTION">
-        <value />
-      </option>
-      <option name="GO_BUILTIN_FUNCTION_CALL">
-        <value />
-      </option>
-      <option name="GO_BUILTIN_TYPE_REFERENCE">
-        <value />
-      </option>
-      <option name="GO_BUILTIN_VARIABLE">
-        <value />
-      </option>
-      <option name="GO_EXPORTED_FUNCTION_CALL">
-        <value />
-      </option>
-      <option name="GO_LOCAL_FUNCTION_CALL">
-        <value />
-      </option>
-      <option name="GO_METHOD_RECEIVER">
-        <value />
-      </option>
-      <option name="GO_PACKAGE">
-        <value />
-      </option>
-      <option name="GO_SHADOWING_VARIABLE">
-        <value />
-      </option>
-      <option name="GO_TYPE_REFERENCE">
-        <value />
-      </option>
+    </option>
+    <option name="GO_BUILTIN_CONSTANT">
+      <value>
+        <option name="FOREGROUND" value="7a3e9d" />
+      </value>
     </option>
     <option name="GRID_NULL_VALUE">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="HTML_ATTRIBUTE_NAME">
       <value />
@@ -258,9 +219,7 @@
       <value />
     </option>
     <option name="HTML_ENTITY_REFERENCE">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="HTML_TAG">
       <value>
@@ -324,9 +283,7 @@
       </value>
     </option>
     <option name="JSON.KEYWORD">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="JSON.PROPERTY_KEY">
       <value>
@@ -350,10 +307,10 @@
       <value />
     </option>
     <option name="KOTLIN_FUNCTION_LITERAL_BRACES_AND_ARROW">
-      <value>
-        <option name="FOREGROUND" value="89ddff" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
+      <value />
+    </option>
+    <option name="KOTLIN_LABEL">
+      <value />
     </option>
     <option name="KOTLIN_MUTABLE_VARIABLE">
       <value>
@@ -440,9 +397,7 @@
       <value />
     </option>
     <option name="SQL_PARAMETER">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="SQL_PROCEDURE">
       <value />
@@ -518,9 +473,7 @@
       <value />
     </option>
     <option name="XML_ENTITY_REFERENCE">
-      <value>
-        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
-      </value>
+      <value />
     </option>
     <option name="XML_PROLOGUE">
       <value />

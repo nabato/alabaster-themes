@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+## [1.0.93]
+- Vibe coding fixes by Deepseek
+
+## [1.0.92]
+- Go support
+
+## [1.0.91]
+- Update theme to Light with Light Header and Dark UIs defaults.
+
+## [1.0.90]
+- Fixed broken Clojure support after Cursive's upgrade.
+
 ## [1.0.83]
 - Strings' content background color in BG heme stays the same when the line is highlighted by IDE, previously background changed to line highlight color.
 - String's quotation marks' background color in dynamic now and changes to a line highlight color, previously it was always of a default background color.

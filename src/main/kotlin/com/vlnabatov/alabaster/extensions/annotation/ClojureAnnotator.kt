@@ -13,7 +13,7 @@ import com.intellij.openapi.editor.markup.TextAttributes
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.util.elementType
 import com.intellij.ui.JBColor
 import com.vlnabatov.alabaster.annotateSeparationMarks
 import com.vlnabatov.alabaster.isBGTheme
@@ -37,8 +37,6 @@ val macro = Keyword.find("macro")
 val ns = Keyword.find("ns")
 
 val functionMacrosRegex = Regex("\\bfn|defn|defn-|defmulti|defmethod|defmacro|deftest\\b")
-
-//val SEPARATORS = TokenSet.create(*arrayOf<IElementType>(NS_SEP))
 
 
 fun isClojureLangNSCall(e: ClojurePsiElement) =
@@ -110,8 +108,6 @@ fun isLetFnMacroBindingToAFunction(e: ClojurePsiElement) =
 
 class ClojureAnnotator : Annotator {
   override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-    if (element !is LeafPsiElement) return
-
     try {
       when (element.elementType) {
         // Highlight outer braces of the top forms in black in Alabaster BG theme
