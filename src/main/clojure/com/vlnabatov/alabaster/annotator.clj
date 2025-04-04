@@ -27,5 +27,5 @@
     (cond (contains? strings elementType) (UtilKt/annotateSeparationMarks element holder)
           (contains? constants elementType) (-> holder
                                                 (.newSilentAnnotation HighlightSeverity/INFORMATION)
-                                                (.textAttributes DefaultLanguageHighlighterColors/MARKUP_ENTITY)
+                                                (.textAttributes DefaultLanguageHighlighterColors/NUMBER)
                                                 (.create)))))

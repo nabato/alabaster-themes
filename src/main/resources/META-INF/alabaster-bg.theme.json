@@ -2,6 +2,7 @@
   "author": "Vladislav Nabatov",
   "dark": false,
   "name": "Alabaster BG",
+  "parentTheme": "ExperimentalLightWithLightHeader",
   "editorScheme": "/META-INF/alabaster-bg.xml",
   "colors": {
     "blue": "#B4D8FD"

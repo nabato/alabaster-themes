@@ -37,7 +37,7 @@
     </option>
     <option name="CSS.UNICODE.RANGE">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="CSS.URL">
@@ -45,17 +45,17 @@
     </option>
     <option name="Clojure Keyword">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="Clojure Literal">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="Clojure Numbers">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="DEFAULT_ATTRIBUTE">
@@ -117,7 +117,7 @@
     </option>
     <option name="DEFAULT_ENTITY">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="DEFAULT_FUNCTION_DECLARATION">
@@ -136,7 +136,7 @@
     </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
         <option name="EFFECT_COLOR" value="ff0000" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
@@ -196,7 +196,7 @@
     </option>
     <option name="DEFAULT_VALID_STRING_ESCAPE">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="ERRORS_ATTRIBUTES">
@@ -207,10 +207,45 @@
         <option name="ERROR_STRIPE_COLOR" value="cf5b56" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
+      <option name="GO_BUILTIN_CONSTANT">
+        <value>
+          <option name="FOREGROUND" value="DEFAULT_NUMBER" />
+        </value>
+      </option>
+      <option name="GO_BUILTIN_FUNCTION">
+        <value />
+      </option>
+      <option name="GO_BUILTIN_FUNCTION_CALL">
+        <value />
+      </option>
+      <option name="GO_BUILTIN_TYPE_REFERENCE">
+        <value />
+      </option>
+      <option name="GO_BUILTIN_VARIABLE">
+        <value />
+      </option>
+      <option name="GO_EXPORTED_FUNCTION_CALL">
+        <value />
+      </option>
+      <option name="GO_LOCAL_FUNCTION_CALL">
+        <value />
+      </option>
+      <option name="GO_METHOD_RECEIVER">
+        <value />
+      </option>
+      <option name="GO_PACKAGE">
+        <value />
+      </option>
+      <option name="GO_SHADOWING_VARIABLE">
+        <value />
+      </option>
+      <option name="GO_TYPE_REFERENCE">
+        <value />
+      </option>
     </option>
     <option name="GRID_NULL_VALUE">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="HTML_ATTRIBUTE_NAME">
@@ -224,7 +259,7 @@
     </option>
     <option name="HTML_ENTITY_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="HTML_TAG">
@@ -290,7 +325,7 @@
     </option>
     <option name="JSON.KEYWORD">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="JSON.PROPERTY_KEY">
@@ -406,7 +441,7 @@
     </option>
     <option name="SQL_PARAMETER">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="SQL_PROCEDURE">
@@ -484,7 +519,7 @@
     </option>
     <option name="XML_ENTITY_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FOREGROUND" value="DEFAULT_NUMBER" />
       </value>
     </option>
     <option name="XML_PROLOGUE">

@@ -1,5 +1,6 @@
 {
   "name": "Alabaster Dark",
+  "parentTheme": "ExperimentalDark",
   "dark": true,
   "author": "Vladislav Nabatov",
   "editorScheme": "/META-INF/alabaster-dark.xml",
