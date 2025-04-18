@@ -754,7 +754,10 @@
             <value />
         </option>
         <option name="RUBY_CONSTANT_DECLARATION">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="3e7e" />
+                <option name="BACKGROUND" value="dbf1ff" />
+            </value>
         </option>
         <option name="RUBY_HASH_ASSOC">
             <value />
@@ -774,6 +777,9 @@
                 <option name="BACKGROUND" value="dbf1ff" />
             </value>
         </option>
+        <option name="RUBY_PARAMDEF_CALL">
+            <value />
+        </option>
         <option name="RUBY_PARAMETER_ID">
             <value />
         </option>
@@ -782,6 +788,9 @@
                 <option name="FOREGROUND" value="64200" />
                 <option name="BACKGROUND" value="c0ecaa" />
             </value>
+        </option>
+        <option name="RUBY_SPECIFIC_CALL">
+            <value />
         </option>
         <option name="RUNTIME_ERROR">
             <value>
