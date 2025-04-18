@@ -366,6 +366,57 @@
     <option name="PY.SELF_PARAMETER">
       <value />
     </option>
+    <option name="RUBY_COMMENT">
+      <value>
+        <option name="FOREGROUND" value="aa3731" />
+      </value>
+    </option>
+    <option name="RUBY_CONSTANT_DECLARATION">
+      <value>
+        <option name="FOREGROUND" value="325cc0" />
+      </value>
+    </option>
+    <option name="RUBY_HASH_ASSOC" baseAttributes="DEFAULT_OPERATION_SIGN" />
+    <option name="RUBY_HEREDOC_CONTENT">
+      <value>
+        <option name="FOREGROUND" value="448c27" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+    <option name="RUBY_HEREDOC_ID">
+      <value>
+        <option name="FOREGROUND" value="448c27" />
+        <option name="FONT_TYPE" value="1" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="RUBY_LOCAL_VAR_ID" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
+    <option name="RUBY_METHOD_NAME">
+      <value>
+        <option name="FOREGROUND" value="325cc0" />
+      </value>
+    </option>
+    <option name="RUBY_NTH_REF">
+      <value>
+        <option name="FOREGROUND" value="7a3e9d" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="RUBY_PARAMDEF_CALL">
+      <value />
+    </option>
+    <option name="RUBY_PARAMETER_ID">
+      <value />
+    </option>
+    <option name="RUBY_REGEXP">
+      <value>
+        <option name="FOREGROUND" value="448c27" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="RUBY_SPECIFIC_CALL">
+      <value />
+    </option>
     <option name="REGEXP.META">
       <value />
     </option>
