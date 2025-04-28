@@ -377,6 +377,9 @@
       </value>
     </option>
     <option name="RUBY_HASH_ASSOC" baseAttributes="DEFAULT_OPERATION_SIGN" />
+    <option name="RUBY_HASH_KEY">
+      <value />
+    </option>
     <option name="RUBY_HEREDOC_CONTENT">
       <value>
         <option name="FOREGROUND" value="448c27" />
@@ -416,6 +419,11 @@
     </option>
     <option name="RUBY_SPECIFIC_CALL">
       <value />
+    </option>
+    <option name="RUBY_SYMBOL">
+      <value>
+        <option name="FOREGROUND" value="7a3e9d" />
+      </value>
     </option>
     <option name="REGEXP.META">
       <value />

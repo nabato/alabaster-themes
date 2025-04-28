@@ -762,6 +762,9 @@
         <option name="RUBY_HASH_ASSOC">
             <value />
         </option>
+        <option name="RUBY_HASH_KEY">
+            <value />
+        </option>
         <option name="RUBY_HEREDOC_CONTENT">
             <value>
                 <option name="FOREGROUND" value="64200" />
@@ -791,6 +794,11 @@
         </option>
         <option name="RUBY_SPECIFIC_CALL">
             <value />
+        </option>
+        <option name="RUBY_SYMBOL">
+            <value>
+                <option name="FOREGROUND" value="7a3e9d" />
+            </value>
         </option>
         <option name="RUNTIME_ERROR">
             <value>
