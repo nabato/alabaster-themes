@@ -137,7 +137,9 @@
       </value>
     </option>
     <option name="DEFAULT_KEYWORD">
-      <value />
+      <value>
+        <option name="FOREGROUND" value="a9b7c6" />
+      </value>
     </option>
     <option name="DEFAULT_LABEL">
       <value />

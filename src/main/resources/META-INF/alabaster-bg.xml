@@ -301,7 +301,9 @@
             </value>
         </option>
         <option name="DEFAULT_KEYWORD">
-            <value />
+            <value>
+                <option name="FOREGROUND" value="0" />
+            </value>
         </option>
         <option name="DEFAULT_LABEL">
             <value>
