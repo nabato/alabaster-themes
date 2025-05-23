@@ -376,6 +376,9 @@
       </value>
     </option>
     <option name="RUBY_GVAR" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
+    <option name="RUBY_HASH_KEY">
+      <value />
+    </option>
     <option name="RUBY_HEREDOC_CONTENT">
       <value>
         <option name="FOREGROUND" value="6a8759" />
@@ -403,16 +406,14 @@
     <option name="RUBY_PARAMETER_ID">
       <value />
     </option>
-    <option name="RUBY_REGEXP">
-      <value>
-        <option name="FOREGROUND" value="95cb82" />
-      </value>
-    </option>
+    <option name="RUBY_REGEXP" baseAttributes="DEFAULT_STRING" />
     <option name="RUBY_SPECIFIC_CALL">
       <value />
     </option>
     <option name="RUBY_SYMBOL">
-      <value />
+      <value>
+        <option name="FOREGROUND" value="9876aa" />
+      </value>
     </option>
     <option name="RUBY_WORDS" baseAttributes="DEFAULT_STRING" />
     <option name="REGEXP.BRACES" baseAttributes="DEFAULT_BRACES" />
