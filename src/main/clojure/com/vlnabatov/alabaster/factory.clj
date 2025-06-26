@@ -53,6 +53,7 @@
 
 (defn -uiSettingsChanged [_this _] (patch-options))
 (defn -globalSchemeChange [_this _] (patch-options))
+(defn -isDumbAware [_this] true)
 
 (defn handler
   [request project]

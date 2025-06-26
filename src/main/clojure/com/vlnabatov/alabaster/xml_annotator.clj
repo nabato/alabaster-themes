@@ -9,6 +9,7 @@
               :name       com.vlnabatov.alabaster.extensions.annotation.XMLAnnotator
               :prefix     "-"))
 
+(defn -isDumbAware [_this] false)
 
 (defn -annotate
   [_ ^PsiElement element ^AnnotationHolder holder]
